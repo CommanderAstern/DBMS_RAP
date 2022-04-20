@@ -48,3 +48,9 @@ def login(request):
 
 def faqs(request):
     return render(request, 'faqs/faqs.html')
+
+def about(request):
+    return render(request, 'about/about.html')
+
+def search(request):
+    return render(request, 'search/search.html')
