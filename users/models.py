@@ -19,6 +19,7 @@ class Victim(models.Model):
 class Officer(models.Model):
     officer_id = models.CharField(max_length = 10, primary_key = True)
     officer_name = models.CharField(max_length = 100)
+    officer_email = models.CharField(max_length = 100)
     officer_gender = models.CharField(max_length = 10)
     officer_designation = models.CharField(max_length = 50)
     officer_phone = models.CharField(max_length = 10)
