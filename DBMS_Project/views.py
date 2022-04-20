@@ -4,7 +4,7 @@ from dummy import models as dummy_models
 from django.http import HttpResponse
 
 def homepage(request):
-    return render(request, 'dashboard/dashboard.html')
+    return render(request, 'homepage/homepage.html')
 
 def file_an_fir(request):
     if request.method == 'GET':
@@ -45,3 +45,6 @@ def login(request):
 
         else:
             return HttpResponse('Login failed')
+
+def faqs(request):
+    return render(request, 'faqs/faqs.html')

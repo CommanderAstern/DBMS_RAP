@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Basic HTML/Tailwind starter</title>
+    <meta name="description" content="Basic HTML/Tailwind starter" />
+    <meta name="author" content="Daily Dev Tips" />
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body class="main">
+    <!-- backround image -->
+    <section class="big-size">
+      <nav class="flex justify-between p-6 px-4">
+        <div class="flex justify-between items-center w-full">
+          <div class="xl:w-1/3 z-50">
+            <a class="block max-w-max" href="/">
+              <h3 class="text-2xl font-semibold text-center logoMain">FIR REPORT</h3>
+            </a>
+          </div>
+          <div class="hidden xl:block xl:w-1/3 z-30">
+            <ul class="flex justify-center">
+              <li class="mr-12"><a class="text-coolGray-500 hover:text-coolGray-900 font-medium" href="#">Search</a></li>
+              <li class="mr-12"><a class="text-coolGray-500 hover:text-coolGray-900 font-medium" href="/faqs">FAQs</a></li>
+              <li class="mr-12"><a class="text-coolGray-500 hover:text-coolGray-900 font-medium" href="#">About</a></li>
+            </ul>
+          </div>
+          <div class="hidden xl:block xl:w-1/3">
+            <div class="flex items-center justify-end">
+              <!-- hover:bg-green-600 -->
+              <a class="inline-block py-3 px-8 text-sm leading-5 text-green-50 brownIthink  font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md z-50" href="#">Sign In</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+    <div class="inline-flex flex-col space-y-24 items-start justify-end main-add z-50" style="width: 646px; height: 567px;">
+      <p class="text-6xl font-extrabold leading-10" style="width: 646px;">File an FIR <br/>Police Report</p>
+      <p class="text-2xl leading-9 text-gray-500" style="width: 569px;">You can now file a police report online. <br/><br/>The FIR police is the fastest way to get your problem resolved and make sure that justice is served.
+      <br/>
+      <br/>If you have information on crime or you're worried that someone may be harmed, FIR Police Report is the appropriate reporting system to use. </p>
+    </div>
+
+    <!-- pic policereport.png -->
+    <div>
+      <img class="pic-pos" src="static/homepage/policereport.png" alt="">
+    </div>
+    <div class="coolText"></div>
+
+
+  </body>
+</html>
+
+
+
+
