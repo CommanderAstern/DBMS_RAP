@@ -37,7 +37,7 @@
   
   
   background-image: url("vector_1580.png");
-  opacity: 0.4;
+  opacity: 1;
 
   background-size: 100%;
 }
@@ -93,3 +93,16 @@ flex-grow: 0;
 margin: 2px 0px;
 }
 
+.citizen{
+
+  padding-right: 100px;
+}
+.name_mark{
+  padding-right: 65px;
+
+}
+
+.itemMenu{
+  width: 142px;
+
+}
