@@ -26,26 +26,6 @@ def file_an_fir(request):
 
         return HttpResponse('Form submitted successfully')
 
-# def login(request):
-#     if request.method == 'GET':
-#         return render(request, 'authentication/login.html')
-
-#     if request.method == 'POST':
-#         print(request.POST)
-#         id = request.POST['officerid']
-#         password = request.POST['your_pass']
-
-#         officers = user_models.Officer.objects.all()
-#         print(id, password)
-#         print(officers)
-
-#         for officer in officers:
-#             if officer.officer_id == id and officer.officer_password == password:
-#                 return HttpResponse('Login successful')
-
-#         else:
-#             return HttpResponse('Login failed')
-
 def faqs(request):
     return render(request, 'faqs/faqs.html')
 
@@ -55,11 +35,40 @@ def about(request):
 def search(request):
     return render(request, 'search/search.html')
 
-def sign_in(request):
-    if request.method == 'GET':
-        return render(request, 'authentication/signin.html')
+# def sign_in(request):
+#     if request.method == 'GET':
+#         return render(request, 'authentication/signin.html')
 
-    # if request.method == 'POST':
+#     # if request.method == 'POST':
 
 def sign_up(request):
-    return render(request, 'authentication/signup.html')
+    if request.method == 'GET':
+        return render(request, 'authentication/sign-up.html')
+
+    if request.method == 'POST':
+        print(request.POST)
+
+        victim = user_models.Victim()
+
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        password = request.POST['password']
+        
+        name = first_name + last_name
+        victim.victim_name = name
+
+
+        id = request.POST['officerid']
+        password = request.POST['your_pass']
+
+        officers = user_models.Officer.objects.all()
+        print(id, password)
+        print(officers)
+
+        for officer in officers:
+            if officer.officer_id == id and officer.officer_password == password:
+                return HttpResponse('Login successful')
+
+        else:
+            return HttpResponse('Login failed')
