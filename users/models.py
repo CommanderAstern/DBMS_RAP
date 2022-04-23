@@ -6,7 +6,7 @@ class Victim(models.Model):
     victim_id = models.CharField(max_length = 10, primary_key = True)
     victim_name = models.CharField(max_length = 100)
     victim_gender = models.CharField(max_length = 10)
-    victim_age = models.IntegerField()
+    victim_age = models.IntegerField(default=0)
     victim_aadhar = models.CharField(max_length = 12)
     victim_email = models.CharField(max_length = 100)
     victim_phone = models.CharField(max_length = 10)

@@ -2,6 +2,8 @@ from django.shortcuts import render
 from users import models as user_models
 from dummy import models as dummy_models
 from django.http import HttpResponse
+import numpy as np
+import random as rand
 
 def homepage(request):
     return render(request, 'homepage/homepage.html')
@@ -35,17 +37,18 @@ def about(request):
 def search(request):
     return render(request, 'search/search.html')
 
-# def sign_in(request):
-#     if request.method == 'GET':
-#         return render(request, 'authentication/signin.html')
+def sign_in(request):
+    if request.method == 'GET':
+        return render(request, 'authentication/signin.html')
 
-#     # if request.method == 'POST':
+    # if request.method == 'POST':
 
 def sign_up(request):
     if request.method == 'GET':
         return render(request, 'authentication/sign-up.html')
 
     if request.method == 'POST':
+        i = rand.randint(1, 10000)
         print(request.POST)
 
         victim = user_models.Victim()
@@ -55,20 +58,14 @@ def sign_up(request):
         email = request.POST['email']
         password = request.POST['password']
         
-        name = first_name + last_name
+        name = first_name + ' ' + last_name
+        victim.victim_id = i
         victim.victim_name = name
+        victim.victim_email = email
+        victim.victim_password = password
 
+        victim.save()
 
-        id = request.POST['officerid']
-        password = request.POST['your_pass']
+        print(victim)
 
-        officers = user_models.Officer.objects.all()
-        print(id, password)
-        print(officers)
-
-        for officer in officers:
-            if officer.officer_id == id and officer.officer_password == password:
-                return HttpResponse('Login successful')
-
-        else:
-            return HttpResponse('Login failed')
+        return HttpResponse('Sign up successful!!')
