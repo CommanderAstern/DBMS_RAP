@@ -39,9 +39,20 @@ def search(request):
 
 def sign_in(request):
     if request.method == 'GET':
-        return render(request, 'authentication/signin.html')
+        return render(request, 'authentication/sign-in.html')
 
-    # if request.method == 'POST':
+    if request.method == 'POST':
+        print(request.POST)
+
+        email = request.POST['email']
+        password = request.POST['password']
+
+        victim = user_models.Victim.objects.filter(victim_email=email, victim_password=password)
+
+        if victim:
+            return HttpResponse('Sign in successful!!')
+        else:
+            return HttpResponse('Sign in failed!!')
 
 def sign_up(request):
     if request.method == 'GET':
@@ -49,7 +60,6 @@ def sign_up(request):
 
     if request.method == 'POST':
         i = rand.randint(1, 10000)
-        print(request.POST)
 
         victim = user_models.Victim()
 
