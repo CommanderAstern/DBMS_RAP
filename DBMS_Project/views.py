@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth import authenticate, login
 from users import models as user_models
 from django.http import HttpResponse
 import numpy as np
@@ -46,12 +47,29 @@ def sign_in(request):
         email = request.POST['email']
         password = request.POST['password']
 
-        victim = user_models.Victim.objects.filter(victim_email=email, victim_password=password)
-
+        victim = user_models.Victim.objects.filter(victim_email = email, victim_password = password)
+        
         if victim:
+            request.session['email'] = email
+            print(request.session['email'])
             return HttpResponse('Sign in successful!!')
         else:
-            return HttpResponse('Sign in failed!!')
+            return HttpResponse('Invalid credentials!!')
+
+
+        # user = user_models.Victim.authenticate(email = email, password = password)
+
+
+        # if victim:
+        #     return HttpResponse('Sign in successful!!')
+        # else:
+        #     return HttpResponse('Sign in failed!!')
+
+        # if user is not None:
+        #     login(request, user)
+        #     return HttpResponse('Sign in successful!!')
+        # else:
+        #     return HttpResponse('Sign in failed!!')
 
 def sign_up(request):
     if request.method == 'GET':
@@ -78,3 +96,6 @@ def sign_up(request):
         print(victim)
 
         return HttpResponse('Sign up successful!!')
+
+def dashboard(request):
+    return render(request, 'dashboard/dashboard.html')
