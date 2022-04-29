@@ -35,7 +35,7 @@
           <div class="flex items-center justify-end">
             <!-- hover:bg-green-600 -->
             <a class="inline-block py-3 px-8 text-sm leading-5 text-green-50 brownIthink  font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md z-50"
-              href="/sign-in">Sign In</a>
+              href="/user/sign-in">Sign In</a>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
     class="inline-flex flex-col space-y-10 items-center justify-center p-10 bg-white shadow border border-gray-400 z-50"
     style=" width: 570px; height: 430px; margin-left: 420px; margin-top: 55px;">
     <p class="text-2xl uppercase z-10">Go get those cases resolved!</p>
-    <form method="POST" id="signin-form" class="signin-form" action="/sign-in/">
+    <form method="POST" id="signin-form" class="signin-form" action="/user/sign-in/">
       {% csrf_token %}
       <div class="flex flex-col space-y-6 items-start justify-start z-50" style="width: 490px; height: 250px;">
         <div class="flex flex-col space-y-4 items-start justify-start z-50" style="width: 490px; height: 178px;">
@@ -90,15 +90,12 @@
             class="text-sm font-bold tracking-wide leading-tight inline-flex space-x-2 items-center justify-center px-4 py-3.5 bg-white shadow border border-black"
             value="Login" style="width: 490px; height: 48px; " />
         </div>
-      </div>
-      <a class="z-50" href="/sign-up">
         <p class="text-sm font-bold tracking-wide leading-tight text-center z-50" style="width: 490px;">Don’t have an
-          account? Sign up</p>
-      </a>
+          account? <a class="z-50" href="/user/sign-up">Sign up</a></p>
+      </div>
+
   </div>
   </form>
-
-
 
   <div class="coolText"></div>
 

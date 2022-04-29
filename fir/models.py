@@ -23,4 +23,4 @@ class Log(models.Model):
     datetime = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
-        return self.fir.pk
+        return self.pk
