@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'fir',
     'station',
     'users',
-    'dummy',
 ]
 
 MIDDLEWARE = [
