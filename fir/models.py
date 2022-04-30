@@ -15,7 +15,7 @@ class FIR(models.Model):
     bureau_notes = models.CharField(max_length = 500, default = 'NONE')
 
     def __str__(self):
-        return self.pk
+        return self.category
 
 class Log(models.Model):
     fir = models.ForeignKey(FIR, on_delete = models.CASCADE)
