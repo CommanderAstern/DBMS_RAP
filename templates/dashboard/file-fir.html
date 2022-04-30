@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <title>FIR Management</title>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../../static/dashboard/file-fir.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () {
+            null
+        };
+    </script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class='bx bx-book-reader'></i>
+            <span class="logo_name">FIR Management</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="#">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="fileFir.html" class="active">
+                    <i class='bx bx-book-add'></i>
+                    <span class="links_name">File a FIR</span>
+                </a>
+            </li>
+            <li>
+                <a href="../firfilled/firfilled.html">
+                    <i class='bx bx-book-alt'></i>
+                    <span class="links_name">Filed FIRs</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-current-location'></i>
+                    <span class="links_name">Nearby Police Station</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-message-alt-add'></i>
+                    <span class="links_name">Ask Your Queries</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a href="login.html">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">File a First Information Report (FIR)</span>
+            </div>
+            <div class="profile-details">
+                <img src="" alt="user_image">
+                <span class="admin_name">User</span>
+            </div>
+        </nav>
+
+        <div class="home-content">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <div class="number">Please Fill The Required Details To File A Complaint</div>
+                        <div class="container">
+                            <div class="content">
+                                <form action="#">
+                                    <div class="user-details">
+                                        <div class="input-box">
+                                            <span class="details">Name</span>
+                                            <input type="text" placeholder="Enter Your Name" required>
+                                        </div>
+                                        <br>
+                                        <div class="input-box">
+                                            <span class="details">Phone Number</span>
+                                            <input type="tel" pattern="[0-9]{10}" placeholder="Enter Your Phone Number"
+                                                required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">Aadhar Number</span>
+                                            <input type="tel" pattern="[0-9]{12}" placeholder="Enter Your Aadhar Number"
+                                                required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">Date Of Occurence</span>
+                                            <input type="date" placeholder="Enter Your Email" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details-1">Address</span>
+                                            <textarea name="subject" placeholder="Enter Your Address"
+                                                style="height:200px"></textarea>
+                                        </div>
+
+                                        <div class="input-box">
+                                            <label for="pet-select">Category of Case:</label>
+
+                                            <select name="pets" id="pet-select" style="height: 30px;">
+                                                <option value="">select one of the following Category</option>
+                                                <option value="dog">Illelagal Construction</option>
+                                                <option value="cat">Agriculture/urban land ceiling</option>
+                                                <option value="hamster">Money Lending</option>
+                                                <option value="parrot">Cheating and Misbehaviour</option>
+                                                <option value="spider">Scam</option>
+                                                <option value="goldfish">Terrorism Exporting</option>
+                                                <option value="">Domestic Violence</option>
+                                                <option value="dog">Damaging public property</option>
+                                                <option value="cat">Harrasing(Mental/Physical)</option>
+                                                <option value="hamster">Child Labourer</option>
+                                                <option value="parrot">Dowry</option>
+                                                <option value="spider">Child Marriage</option>
+                                                <option value="goldfish">Illegal arms/drugs export/import</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="input-box">
+                                            <span class="details">Crime Description</span>
+                                            <textarea name="subject" placeholder="Describe The Current Sequence"
+                                                style="height:200px"></textarea>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="gender-details">
+                                        <input type="radio" name="gender" id="dot-1">
+                                        <input type="radio" name="gender" id="dot-2">
+                                        <input type="radio" name="gender" id="dot-3">
+                                        <span class="gender-title">Gender</span>
+                                        <div class="category">
+                                            <label for="dot-1">
+                                                <span class="dot one"></span>
+                                                <span class="gender">Male</span>
+                                            </label>
+                                            <label for="dot-2">
+                                                <span class="dot two"></span>
+                                                <span class="gender">Female</span>
+                                            </label>
+                                            <label for="dot-3">
+                                                <span class="dot three"></span>
+                                                <span class="gender">Other</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="goback">
+                                        <input type="submit" onclick="" value="File FIR">
+                                    </div>
+                                    <div class="goback">
+                                        <a href="dashboard.html"><input type="button" onclick="" value="Go Back"></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,10 +1,37 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib.auth import get_user_model
 
-# Create your views here.
+@login_required(login_url='/user/sign-in')
+def dashboard(request):
+    user = request.user
+    victim = Victim.objects.filter(user=user).first()
+    if victim is not None:
+        return render(request, '../templates/display/temp.html', {'victim': victim})
+
+    officer = Officer.objects.filter(user=user).first()
+    if officer is not None:
+        return render(request, '../templates/display/temp.html', {'officer': officer})
+
+
+@login_required(login_url='/user/sign-in')
+def filefir(request):
+    user = request.user
+    victim = Victim.objects.filter(user=user).first()
+    if victim is not None:
+        return render(request, '../templates/dashboard/file-fir.html', {'victim': victim})
+
+@login_required(login_url='/user/sign-in')
+def filedfirs(request):
+    user = request.user
+    victim = Victim.objects.filter(user=user).first()
+    if victim is not None:
+        return render(request, '../templates/dashboard/filed-firs.html', {'victim': victim})
+
+
 def sign_in(request):
     if request.method == 'GET':
         return render(request, '../templates/authentication/sign-in.html')
@@ -12,14 +39,13 @@ def sign_in(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        User = get_user_model()
-        user = User.objects.filter(email=email).first()
+
+        user = authenticate(email=email, password=password)
+
         if user is not None:
-            if user.check_password(password):
-                login(request, user)
-                return HttpResponse('Success')
-            else:
-                return HttpResponse('Failed')
+            login(request, user)
+            return redirect('/user/temp')
+        
         else:
             return HttpResponse('Failed')
 
