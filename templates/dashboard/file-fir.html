@@ -7,6 +7,8 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../static/dashboard/file-fir.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript">
         function preventBack() {
             window.history.forward();
@@ -25,6 +27,14 @@
             <span class="logo_name">FIR Management</span>
         </div>
         <ul class="nav-links">
+            <li class="pb-16">
+                {% with user.first_name|add:" "|add:user.last_name as FullNameTemp %}
+                <span class="pl-6 text-white text-2xl">{{ FullNameTemp|truncatechars_html:14 }}</span>
+                {% endwith %}
+                <br>
+                <!-- Not Sure what to do here -->
+                <span class="pl-6 text-yellow-200">Citizen</span>
+            </li>
             <li>
                 <a href="/user/profile">
                     <i class='bx bx-grid-alt'></i>
