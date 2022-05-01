@@ -19,13 +19,14 @@ def profile(request):
     #     return render(request, '../templates/display/temp.html', {'officer': officer})
 
 
+
 @login_required(login_url='/user/sign-in')
 def filefir(request):
     user = request.user
     off = 'pranavagarwal03@gmail.com'
     victim = Victim.objects.filter(user=user).first()
     officer = Officer.objects.filter(user__email = off).first()
-    print(victim, officer)
+
     if request.method == 'GET':
         return render(request, '../templates/dashboard/file-fir.html')
     
@@ -50,11 +51,12 @@ def filedfirs(request):
     if victim is not None:
         return render(request, '../templates/dashboard/filed-firs.html', {'firs': firs})
 
-
-
 def sign_in(request):
     if request.method == 'GET':
-        return render(request, '../templates/authentication/sign-in.html')
+        if request.user.is_authenticated:
+            return redirect('/user/profile')
+        else:
+            return render(request, '../templates/authentication/sign-in.html')
 
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -71,7 +73,10 @@ def sign_in(request):
 
 def sign_up(request):
     if request.method == 'GET':
-        return render(request, '../templates/authentication/sign-up.html')
+        if request.user.is_authenticated:
+            return redirect('/user/profile')
+        else:
+            return render(request, '../templates/authentication/sign-up.html')
 
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
@@ -97,3 +102,10 @@ def sign_up(request):
                 return redirect('/user/sign-in')
             else:
                 return HttpResponse('Failed')
+
+@login_required(login_url='/user/sign-in')
+def sign_out(request):
+    print(request.user)
+    logout(request)
+    print(request.user)
+    return redirect('/user/sign-in')
