@@ -55,6 +55,14 @@ def filedfirs(request):
 def nearby_police_stations(request):
     return render(request, '../templates/dashboard/nearby-police-stations.html')
 
+@login_required(login_url='/user/sign-in')
+def queries(request):
+    if request.method == 'GET':
+        return render(request, '../templates/dashboard/queries.html')
+
+    # if request.method == 'POST':
+
+
 def sign_in(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
