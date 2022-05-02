@@ -14,9 +14,9 @@ def profile(request):
     if victim is not None:
         return render(request, '../templates/dashboard/profile.html', {'victim': victim})
 
-    # officer = Officer.objects.filter(user=user).first()
-    # if officer is not None:
-    #     return render(request, '../templates/display/temp.html', {'officer': officer})
+    officer = Officer.objects.filter(user=user).first()
+    if officer is not None:
+        return render(request, '../templates/dashboard_police/profile.html', {'officer': officer})
 
 
 
@@ -105,7 +105,5 @@ def sign_up(request):
 
 @login_required(login_url='/user/sign-in')
 def sign_out(request):
-    print(request.user)
     logout(request)
-    print(request.user)
     return redirect('/user/sign-in')
