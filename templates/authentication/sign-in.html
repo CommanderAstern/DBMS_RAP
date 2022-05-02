@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/static/styles.css" />
 </head>
 
-<body class="main">
+<body class="">
   <!-- backround image -->
   <section class="big-size">
     <nav class="flex justify-between p-6 px-4">
@@ -41,59 +41,60 @@
       </div>
     </nav>
   </section>
-
-  <div
-    class="inline-flex flex-col space-y-10 items-center justify-center p-10 bg-white shadow border border-gray-400 z-50"
-    style=" width: 570px; height: 430px; margin-left: 420px; margin-top: 55px;">
-    <p class="text-2xl uppercase z-10">Go get those cases resolved!</p>
-    <form method="POST" id="signin-form" class="signin-form" action="/user/sign-in/">
-      {% csrf_token %}
-      <div class="flex flex-col space-y-6 items-start justify-start z-50" style="width: 490px; height: 250px;">
-        <div class="flex flex-col space-y-4 items-start justify-start z-50" style="width: 490px; height: 178px;">
-          <div class="flex flex-col space-y-2 items-start justify-start z-50" style="width: 490px; height: 62px;">
-            <div class="inline-flex items-center justify-start bg-white border border-gray-400 z-50"
-              style="width: 490px; height: 62px;">
-              <div class="flex items-start justify-start h-full py-3 pl-3 z-50">
-                <div class="flex items-center justify-center flex-1 h-6 py-0.5 px-0.5 z-50">
-                  <img class="flex-1 h-full rounded-lg"
-                    src="https://via.placeholder.com/19.047618865966797x18.233583450317383" />
+  <div class="h-screen flex justify-center">
+    <div
+      class="inline-flex flex-col space-y-10 items-center justify-center bg-white shadow border border-gray-400 z-50"
+      style=" width: 570px; height: 430px; margin-top: 55px;">
+      <p class="text-2xl uppercase z-10">Go get those cases resolved!</p>
+      <form method="POST" id="signin-form" class="signin-form" action="/user/sign-in/">
+        {% csrf_token %}
+        <div class="flex flex-col space-y-6 items-start justify-start z-50" style="width: 490px; height: 250px;">
+          <div class="flex flex-col space-y-4 items-start justify-start z-50" style="width: 490px; height: 178px;">
+            <div class="flex flex-col space-y-2 items-start justify-start z-50" style="width: 490px; height: 62px;">
+              <div class="inline-flex items-center justify-start bg-white border border-gray-400 z-50"
+                style="width: 490px; height: 62px;">
+                <div class="flex items-start justify-start h-full py-3 pl-3 z-50">
+                  <div class="flex items-center justify-center flex-1 h-6 py-0.5 px-0.5 z-50">
+                    <img class="flex-1 h-full rounded-lg"
+                      src="https://via.placeholder.com/19.047618865966797x18.233583450317383" />
+                  </div>
+                </div>
+                <div class="inline-flex flex-col space-y-1 items-start justify-start p-3 z-50"
+                  style="width: 454px; height: 62px;">
+                  <p class="text-xs font-bold leading-none text-gray-800 z-50" style="width: 430px;">Email</p>
+                  <input class="text-sm leading-none text-gray-600 z-50" type="email" placeholder="abc@xyz.com"
+                    style="width: 430px" name="email" id="email" required>
                 </div>
               </div>
-              <div class="inline-flex flex-col space-y-1 items-start justify-start p-3 z-50"
-                style="width: 454px; height: 62px;">
-                <p class="text-xs font-bold leading-none text-gray-800 z-50" style="width: 430px;">Email</p>
-                <input class="text-sm leading-none text-gray-600 z-50" type="email" placeholder="abc@xyz.com"
-                  style="width: 430px" name="email" id="email" required>
+            </div>
+            <div class="flex flex-col space-y-2 items-start justify-start z-50" style="width: 490px; height: 62px;">
+              <div class="inline-flex items-center justify-start bg-white border border-gray-400 z-50"
+                style="width: 490px; height: 62px;">
+                <div class="flex items-start justify-start h-full py-3 pl-3 z-50">
+                  <div class="flex items-center justify-center flex-1 h-6 px-1 py-0.5 z-50">
+                    <img class="flex-1 h-full rounded-lg z-50"
+                      src="https://via.placeholder.com/15.321000099182129x18.617252349853516" />
+                  </div>
+                </div>
+                <div class="inline-flex flex-col space-y-1 items-start justify-start p-3 z-50"
+                  style="width: 426px; height: 62px;">
+                  <p class="text-xs font-bold leading-none text-gray-800 z-50" style="width: 402px;">Password</p>
+                  <input class="text-sm leading-none text-gray-600 z-50" type="password" placeholder="******"
+                    style="width: 430px" name="password" id="password" required>
+                </div>
               </div>
             </div>
           </div>
           <div class="flex flex-col space-y-2 items-start justify-start z-50" style="width: 490px; height: 62px;">
-            <div class="inline-flex items-center justify-start bg-white border border-gray-400 z-50"
-              style="width: 490px; height: 62px;">
-              <div class="flex items-start justify-start h-full py-3 pl-3 z-50">
-                <div class="flex items-center justify-center flex-1 h-6 px-1 py-0.5 z-50">
-                  <img class="flex-1 h-full rounded-lg z-50"
-                    src="https://via.placeholder.com/15.321000099182129x18.617252349853516" />
-                </div>
-              </div>
-              <div class="inline-flex flex-col space-y-1 items-start justify-start p-3 z-50"
-                style="width: 426px; height: 62px;">
-                <p class="text-xs font-bold leading-none text-gray-800 z-50" style="width: 402px;">Password</p>
-                <input class="text-sm leading-none text-gray-600 z-50" type="password" placeholder="******"
-                  style="width: 430px" name="password" id="password" required>
-              </div>
-            </div>
+            <input type="submit" name="submit" id="submit"
+              class="text-sm font-bold tracking-wide leading-tight inline-flex space-x-2 items-center justify-center px-4 py-3.5 bg-white shadow border border-black"
+              value="Login" style="width: 490px; height: 48px; " />
           </div>
+          <p class="text-sm font-bold tracking-wide leading-tight text-center z-50" style="width: 490px;">Don’t have an
+            account? <a class="z-50" href="/user/sign-up">Sign up</a></p>
         </div>
-        <div class="flex flex-col space-y-2 items-start justify-start z-50" style="width: 490px; height: 62px;">
-          <input type="submit" name="submit" id="submit"
-            class="text-sm font-bold tracking-wide leading-tight inline-flex space-x-2 items-center justify-center px-4 py-3.5 bg-white shadow border border-black"
-            value="Login" style="width: 490px; height: 48px; " />
-        </div>
-        <p class="text-sm font-bold tracking-wide leading-tight text-center z-50" style="width: 490px;">Don’t have an
-          account? <a class="z-50" href="/user/sign-up">Sign up</a></p>
-      </div>
 
+    </div>
   </div>
   </form>
 
