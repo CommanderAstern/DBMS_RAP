@@ -8,5 +8,6 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('file-fir/', views.filefir, name='file-fir'),
     path('filed-firs/', views.filedfirs, name='filed-firs'),
-    path('log-out/', views.sign_out, name='logout')
+    path('log-out/', views.sign_out, name='logout'),
+    path('nearby-police-stations/', views.nearby_police_stations, name='nearby-police-stations')
 ]

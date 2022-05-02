@@ -51,6 +51,10 @@ def filedfirs(request):
     if victim is not None:
         return render(request, '../templates/dashboard/filed-firs.html', {'firs': firs})
 
+@login_required(login_url='/user/sign-in')
+def nearby_police_stations(request):
+    return render(request, '../templates/dashboard/nearby-police-stations.html')
+
 def sign_in(request):
     if request.method == 'GET':
         if request.user.is_authenticated:

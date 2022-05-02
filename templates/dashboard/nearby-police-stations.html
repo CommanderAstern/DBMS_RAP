@@ -1,16 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
     <title>CRMS</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../static/dashboard/profile.css">
+    <link rel="stylesheet" href="../../static/dashboard/map.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
     <script type="text/javascript">
         function preventBack() {
             window.history.forward();
@@ -56,7 +55,7 @@
                 </a>
             </li>
             <li>
-                <a href="/user/nearby-police-stations">
+                <a href="/user/nearby-police-stations" class="active">
                     <i class='bx bx-current-location'></i>
                     <span class="links_name">Nearby Police Station</span>
                 </a>
@@ -79,30 +78,27 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Profile</span>
+                <span class="dashboard">Nearby Police Station (Map View)</span>
             </div>
             <div class="profile-details">
                 <img src="images\profile.png" alt="user_image">
-                <span class="admin_name"></span>
+                <span class="admin_name">User</span>
             </div>
         </nav>
+
         <div class="home-content">
             <div class="overview-boxes">
-                    <div class="box">
-                        <div class="right-side">
-                            <div class="text">
-                                <p><b>Name: {{victim.user.first_name}} {{victim.user.last_name}}</b></p>
-                                <p><b>Aadhar Number: {{victim.aadhar}}</b></p>
-                                <p><b>Contact Number: {{victim.phone}}</b></p>
-                                <p><b>Email: {{victim.user.email}}</b></p>
-                                <p><b>Age(as of January 2022): {{victim.age}}</b></p>
-                                <p><b> Home Address: {{victim.address}}</b></p>
-                            </div>
-                        </div>
+                <div class="box">
+                    <div class="right-side">
+                        <iframe style="width: 100%;" src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3513.3961161111474!2d77.74234523433992!3d8.724396312577277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sPolice%20Stations%20Near%20Me!5e0!3m2!1sen!2sin!4v1638633555231!5m2!1sen!2sin" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
+                </div>
             </div>
         </div>
+        </div>
+        </div>
     </section>
+
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
@@ -114,5 +110,6 @@
                 sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
         }
     </script>
+</body>
 
 </html>
