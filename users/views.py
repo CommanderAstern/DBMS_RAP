@@ -106,27 +106,39 @@ def add_police(request):
                 return HttpResponse('Failed')
 
 
-@login_required(login_url='/uesr/sign-in')
-def update_police(request):
+@login_required(login_url='/user/sign-in')
+def update_police(request, police_id):
+    officer = Officer.objects.filter(pk=police_id).first()
     if request.method == 'GET':
-        return render(request, '../templates/dashboard_police/update-police.html')
+        return render(request, '../templates/dashboard_police/update-police.html', {'officer': officer})
 
     if request.method == 'POST':
         first_name = request.POST.get('fname')
         last_name = request.POST.get('lname')
+        designation = request.POST.get('designation')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        station_name = request.POST.get('stationname')
 
+        officer.user.first_name = first_name
+        officer.user.last_name = last_name
+        officer.user.save()
+        officer.designation = designation
+        officer.phone = phone
+        officer.address = address
+        officer.station = Station.objects.filter(name=station_name).first()
+        officer.save()
 
-@login_required(login_url='/uesr/sign-in')
+        return redirect('users:updatepoliceid')
+
+@login_required(login_url='/user/sign-in')
 def update_police_id(request):
     if request.method == 'GET':
         return render(request, '../templates/dashboard_police/update-police-id.html')
 
     if request.method == 'POST':
         id = request.POST.get('uuid')
-        # officer = Officer.objects.filter(pk=id).first()
-        # print(officer)
-
-        return redirect(reverse(update_police, {'id': id}))
+        return redirect('users:updatepolice', police_id = id)
         
 
 def sign_in(request):
@@ -145,7 +157,6 @@ def sign_in(request):
         if user is not None:
             login(request, user)
             return redirect('/user/profile')
-
         else:
             return HttpResponse('Failed')
 

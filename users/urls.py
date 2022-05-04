@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+app_name = 'users'
+
 urlpatterns = [
     path('sign-in/', views.sign_in, name='sign-in'),
     path('sign-up/', views.sign_up, name='sign-up'),
@@ -13,5 +15,5 @@ urlpatterns = [
     path('queries/', views.queries, name='queries'),
     path('add-police/', views.add_police, name='addpolice'),
     path('update-police-id/', views.update_police_id, name='updatepoliceid'),
-    path('update-police/', views.update_police, name='updatepolice'),
+    path('update-police-id/<police_id>', views.update_police, name='updatepolice'),
 ]
