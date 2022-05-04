@@ -11,4 +11,6 @@ urlpatterns = [
     path('nearby-police-stations/', views.nearby_police_stations, name='nearby-police-stations'),
     path('log-out/', views.sign_out, name='logout'),
     path('queries/', views.queries, name='queries'),
+    path('add-police/', views.addpolice, name='addpolice'),
+    path('update-police/', views.addpolice, name='addpolice'),
 ]
