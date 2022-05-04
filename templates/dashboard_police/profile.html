@@ -80,7 +80,7 @@
             </div>
             <div>
                 <button type="button" class="add_button">
-                    <span class="add_button_text"><a href="/user/update-police">Update</a></span>
+                    <span class="add_button_text"><a href="/user/update-police-id">Update</a></span>
                     <span class="add_button_icon">
                         <i class='bx bx-plus'></i>
                     </span>
@@ -100,14 +100,14 @@
                                 <div>
                                     <!--  -->
                                 </div>
-                                <p><b>Unique ID: </b></p>
-                                <p><b>Name: </b></p>
-                                <p><b>Rank: </b></p>
-                                <p><b>Police Station: </p>
-                                <p><b>Contact: </b></p>
-                                <p><b>Address: </b></p>
-                                <p><b>Email: </b></p>
-                                <p><b>Gender: </b></p>  
+                                <p><b>Unique ID: {{officer.user.pk}}</b></p>
+                                <p><b>Name: {{officer.user.first_name}} {{officer.user.last_name}}</b></p>
+                                <p><b>Rank: {{officer.designation}}</b></p>
+                                <p><b>Gender: {{officer.user.gender}}</b></p>  
+                                <p><b>Police Station: {{officer.station.name}}</p>
+                                <p><b>Contact: {{officer.phone}}</b></p>
+                                <p><b>Email: {{officer.user.email}}</b></p>
+                                <p><b>Address: {{officer.address}}</b></p>
                             </div>
                         </div>
                     </div>

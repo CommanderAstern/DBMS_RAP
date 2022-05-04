@@ -1,4 +1,5 @@
 from unicodedata import category
+from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
@@ -22,7 +23,7 @@ def profile(request):
 
 
 @login_required(login_url='/user/sign-in')
-def filefir(request):
+def file_fir(request):
     user = request.user
     off = 'pranavagarwal03@gmail.com'
     victim = Victim.objects.filter(user=user).first()
@@ -47,7 +48,7 @@ def filefir(request):
 
 
 @login_required(login_url='/user/sign-in')
-def filedfirs(request):
+def filed_firs(request):
     user = request.user
     victim = Victim.objects.filter(user=user).first()
     firs = FIR.objects.filter(victim=victim).all().order_by('-datetime')
@@ -69,7 +70,7 @@ def queries(request):
 
 
 @login_required(login_url='/uesr/sign-in')
-def addpolice(request):
+def add_police(request):
     if request.method == 'GET':
         return render(request, '../templates/dashboard_police/add-police.html')
 
@@ -78,13 +79,6 @@ def addpolice(request):
         last_name = request.POST.get('lname')
         email = request.POST.get('email')
         username = first_name + last_name + email
-
-        #     user = models.OneToOneField(
-        #         get_user_model(), on_delete=models.CASCADE, primary_key=True)
-        # station = models.ForeignKey(Station, on_delete=models.CASCADE, null=True)
-        # designation = models.CharField(max_length=50)
-        # phone = models.CharField(max_length=10)
-        # address = models.CharField(max_length=100)
 
         station_name = request.POST.get('stationname')
         station = Station.objects.filter(name=station_name).first()
@@ -111,6 +105,29 @@ def addpolice(request):
             else:
                 return HttpResponse('Failed')
 
+
+@login_required(login_url='/uesr/sign-in')
+def update_police(request):
+    if request.method == 'GET':
+        return render(request, '../templates/dashboard_police/update-police.html')
+
+    if request.method == 'POST':
+        first_name = request.POST.get('fname')
+        last_name = request.POST.get('lname')
+
+
+@login_required(login_url='/uesr/sign-in')
+def update_police_id(request):
+    if request.method == 'GET':
+        return render(request, '../templates/dashboard_police/update-police-id.html')
+
+    if request.method == 'POST':
+        id = request.POST.get('uuid')
+        # officer = Officer.objects.filter(pk=id).first()
+        # print(officer)
+
+        return redirect(reverse(update_police, {'id': id}))
+        
 
 def sign_in(request):
     if request.method == 'GET':
