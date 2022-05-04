@@ -139,7 +139,23 @@ def update_police_id(request):
     if request.method == 'POST':
         id = request.POST.get('uuid')
         return redirect('users:updatepolice', police_id = id)
-        
+
+
+@login_required(login_url='/user/sign-in')
+def registered_firs(request):
+    user = request.user
+    officer = Officer.objects.filter(user=user).first()
+    firs = FIR.objects.filter(officer=officer).all().order_by('-datetime')
+    if request.method == 'GET':
+        return render(request, '../templates/dashboard_police/registered-firs.html', {'firs': firs})
+
+
+@login_required(login_url='/user/sign-in')
+def logs(request, fir_id):
+    logs = Log.objects.filter(fir__pk=fir_id).all().order_by('-datetime')
+    if request.method == 'GET':
+        return render(request, '../templates/dashboard_police/logs.html', {'logs': logs})
+
 
 def sign_in(request):
     if request.method == 'GET':

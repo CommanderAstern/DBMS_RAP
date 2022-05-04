@@ -16,4 +16,6 @@ urlpatterns = [
     path('add-police/', views.add_police, name='addpolice'),
     path('update-police-id/', views.update_police_id, name='updatepoliceid'),
     path('update-police-id/<police_id>', views.update_police, name='updatepolice'),
+    path('registered-firs/', views.registered_firs, name='registeredfirs'),
+    path('registered-firs/<fir_id>', views.logs, name='logs'),
 ]

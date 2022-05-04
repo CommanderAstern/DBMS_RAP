@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -6,14 +5,14 @@
     <title>CRMS</title>
     <meta charset="UTF-8">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../static/dashboard/file-fir.css">
+    <link rel="stylesheet" href="../../static/dashboard_police/content.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript">
         function preventBack() {
             window.history.forward();
         }
         setTimeout("preventBack()", 0);
-        window.onunload = function() {
+        window.onunload = function () {
             null
         };
     </script>
@@ -27,13 +26,13 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="/user/profile" class="active">
+                <a href="/user/profile">
                     <i class='bx bx-list-ul'></i>
-                    <span class="links_name">Profile</span> 
+                    <span class="links_name">Police Details</span>
                 </a>
             </li>
             <li>
-                <a href="/user/registered-firs">
+                <a href="/user/registered-firs" class="active">
                     <i class='bx bx-pie-chart-alt-2'></i>
                     <span class="links_name">FIRs</span>
                 </a>
@@ -45,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="queries.html">
+                <a href=#>
                     <i class='bx bx-message'></i>
                     <span class="links_name">Queries</span>
                 </a>
@@ -62,52 +61,41 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Police Details (Update)</span>
+                <span class="dashboard">Logs</span>
             </div>
-                <!-- <div class="alert" style="background-color: #009578; border-radius: 5px">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                    <strong>Success!</strong> The entered details have been updated.
-                </div> -->
+            <div>
+            </div>
+
             <div class="profile-details">
                 <img src="images\profile.png" alt="user_image">
-                <span class="admin_name">Admin</span>
+                <span class="admin_name">Police</span>
             </div>
         </nav>
-
         <div class="home-content">
             <div class="overview-boxes">
+                {% for fir in firs %}
                 <div class="box">
                     <div class="right-side">
-                        <div class="number">Please Change The Required Details To Update The Police</div>
-                        <div class="container">
-                            <div class="content">
-                                <form method="POST" name="getid" id="getid" action="/user/update-police-id/">
-                                    {% csrf_token %}
-                                    <div class="user-details">
-                                        <div class="input-box">
-                                            <span class="details"><label for="uuid">Unique ID: </label></span>
-                                            <input type="number"  style="width: 100%;" placeholder="Enter the ID of the Police Officer" name="uuid" id="uuid" value=" " required>
-                                        </div>
-                                    </div>
-
-                                    <div class="add">
-                                        <button name="update">Search</button>
-                                    </div>
-                                </form>
+                        <div class="text"><a href="{% url 'users:logs' fir_id=fir.pk %}" style="color: black; text-decoration: none;">
+                            <div>
+                                <!--  -->
                             </div>
+                            <p><b>FIR id: {{fir.pk}}</b></p>
+                            <p><b>Victim: {{fir.victim.user.first_name}} {{fir.victim.user.last_name}}</b></p>
+                            <p><b>Suspect: {{fir.suspect}}</b></p>
+                            <p><b>Details: {{fir.details}}</b></p>
+                            <p><b>Status: {{fir.status}}</b></p></a>
                         </div>
-
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
-        </div>
     </section>
-
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
-        sidebarBtn.onclick = function() {
+        sidebarBtn.onclick = function () {
             sidebar.classList.toggle("active");
             if (sidebar.classList.contains("active")) {
                 sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
@@ -115,6 +103,5 @@
                 sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
         }
     </script>
-</body>
 
 </html>
