@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -28,7 +27,7 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="police_police.html" class="active">
+                <a href="/user/profile" class="active">
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Police Details</span>
                 </a>
@@ -52,7 +51,7 @@
                 </a>
             </li>
             <li class="log_out">
-                <a href="../police/login.html">
+                <a href="/user/log-out">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>
@@ -73,7 +72,7 @@
             </div>
             <div>
                 <button type="button" class="add_button">
-                    <span class="add_button_text"><a href="police_policeadd.html">Add</a></span>
+                    <span class="add_button_text"><a href="/user/add-police">Add</a></span>
                     <span class="add_button_icon">
                         <i class='bx bx-plus'></i>
                     </span>
@@ -81,7 +80,7 @@
             </div>
             <div>
                 <button type="button" class="add_button">
-                    <span class="add_button_text"><a href="policeupdate.html">Update</a></span>
+                    <span class="add_button_text"><a href="/user/update-police-id">Update</a></span>
                     <span class="add_button_icon">
                         <i class='bx bx-plus'></i>
                     </span>
@@ -101,14 +100,14 @@
                                 <div>
                                     <!--  -->
                                 </div>
-                                <p><b>Unique ID: </b></p>
-                                <p><b>Name: </b></p>
-                                <p><b>Rank: </b></p>
-                                <p><b>Police Station: </p>
-                                <p><b>Contact: </b></p>
-                                <p><b>Address: </b></p>
-                                <p><b>Email: </b></p>
-                                <p><b>Gender: </b></p>  
+                                <p><b>Unique ID: {{officer.user.pk}}</b></p>
+                                <p><b>Name: {{officer.user.first_name}} {{officer.user.last_name}}</b></p>
+                                <p><b>Rank: {{officer.designation}}</b></p>
+                                <p><b>Gender: {{officer.user.gender}}</b></p>  
+                                <p><b>Police Station: {{officer.station.name}}</p>
+                                <p><b>Contact: {{officer.phone}}</b></p>
+                                <p><b>Email: {{officer.user.email}}</b></p>
+                                <p><b>Address: {{officer.address}}</b></p>
                             </div>
                         </div>
                     </div>
