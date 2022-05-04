@@ -8,6 +8,8 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../static/dashboard_police/content.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>     
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript">
         function preventBack() {
             window.history.forward();
@@ -23,9 +25,17 @@
     <div class="sidebar">
         <div class="logo-details">
             <i class='bx bx-book-reader'></i>
-            <span class="logo_name">CRMS</span>
+            <span class="logo_name">FIR Management</span>
         </div>
         <ul class="nav-links">
+            <li class="pb-16">
+                {% with user.first_name|add:" "|add:user.last_name as FullNameTemp %}
+                <span class="pl-6 text-white text-2xl">{{ FullNameTemp|truncatechars_html:14 }}</span>
+                {% endwith %}
+                <br>
+                <!-- Not Sure what to do here -->
+                <span class="pl-6 text-yellow-200">Official</span>
+            </li>
             <li>
                 <a href="/user/profile" class="active">
                     <i class='bx bx-list-ul'></i>
@@ -71,7 +81,7 @@
                 </form>
             </div>
             <div>
-                <button type="button" class="add_button">
+                <button type="button" class="add_button" style="background-color: green;">
                     <span class="add_button_text"><a href="/user/add-police">Add</a></span>
                     <span class="add_button_icon">
                         <i class='bx bx-plus'></i>
@@ -79,7 +89,7 @@
                 </button>
             </div>
             <div>
-                <button type="button" class="add_button">
+                <button type="button" class="add_button" style="background-color: green;">
                     <span class="add_button_text"><a href="/user/update-police-id">Update</a></span>
                     <span class="add_button_icon">
                         <i class='bx bx-plus'></i>
