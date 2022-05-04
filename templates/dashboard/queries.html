@@ -13,7 +13,7 @@
             window.history.forward();
         }
         setTimeout("preventBack()", 0);
-        window.onunload = function() {
+        window.onunload = function () {
             null
         };
     </script>
@@ -71,7 +71,7 @@
             <li>
                 <a href="/user/file-fir">
                     <i class='bx bx-book-add'></i>
-                    <span class="links_name" >File a FIR</span>
+                    <span class="links_name">File a FIR</span>
                 </a>
             </li>
             <li>
@@ -106,14 +106,10 @@
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="dashboard">Ask Your Queries</span>
             </div>
-            
-                <div class="alert" style="background-color: #009578; border-radius: 5px">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                    <strong>Success!</strong> The Query has been subitted.
-                </div>
-            <div class="profile-details">
-                <img src="images\profile.png" alt="user_image">
-                <span class="admin_name">User</span>
+
+
+            <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
+                <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
             </div>
         </nav>
 
@@ -128,25 +124,29 @@
                                     <div class="user-details">
                                         <div class="input-box">
                                             <span class="details"><label for="name">Name:</label></span>
-                                            <input type="text" name="name" placeholder="Enter Your Name" id="name" required>
+                                            <input type="text" name="name" placeholder="Enter Your Name" id="name"
+                                                required>
                                         </div>
                                         <br>
                                         <div class="input-box">
                                             <span class="details"><label for="aadhar">Aadhar Number:</label></span>
-                                            <input type="number" id="aadhar" pattern="[0-9]{12}" placeholder="Enter Your Aadhar Number" name="aadhar" required>
+                                            <input type="number" id="aadhar" pattern="[0-9]{12}"
+                                                placeholder="Enter Your Aadhar Number" name="aadhar" required>
                                         </div>
                                         <div class="input-box">
                                             <span class="details"><label for="num">Contact Number:</label></span>
-                                            <input type="number" id="num" pattern="[0-9]{10}" placeholder="Enter Your Contact Number" name="number" required>
+                                            <input type="number" id="num" pattern="[0-9]{10}"
+                                                placeholder="Enter Your Contact Number" name="number" required>
                                         </div>
                                         <div class="input-box">
                                             <span class="details"><label for="mail">Email ID:</label></span>
-                                            <input type="email" id="mail" placeholder="Enter Your Email ID" name="mailid" required>
+                                            <input type="email" id="mail" placeholder="Enter Your Email ID"
+                                                name="mailid" required>
                                         </div>
                                         <div class="input-box">
                                             <span class="details-1"><label for="qry">Query:</label></span>
-                                            <input type="text" name="query" id="query" />
-                                            <textarea id="qry" placeholder=" Ask Your Query Here" name="queries" style="height:200px"></textarea>
+                                            <textarea id="qry" placeholder="   Ask Your Query Here" name="queries"
+                                                style="height:200px"></textarea>
                                         </div>
 
                                     </div>
@@ -167,7 +167,7 @@
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
-        sidebarBtn.onclick = function() {
+        sidebarBtn.onclick = function () {
             sidebar.classList.toggle("active");
             if (sidebar.classList.contains("active")) {
                 sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");

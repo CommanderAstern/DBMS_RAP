@@ -15,7 +15,7 @@
             window.history.forward();
         }
         setTimeout("preventBack()", 0);
-        window.onunload = function() {
+        window.onunload = function () {
             null
         };
     </script>
@@ -45,7 +45,7 @@
             <li>
                 <a href="/user/file-fir">
                     <i class='bx bx-book-add'></i>
-                    <span class="links_name" >File a FIR</span>
+                    <span class="links_name">File a FIR</span>
                 </a>
             </li>
             <li>
@@ -80,9 +80,8 @@
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="dashboard">Nearby Police Station (Map View)</span>
             </div>
-            <div class="profile-details">
-                <img src="images\profile.png" alt="user_image">
-                <span class="admin_name">User</span>
+            <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
+                <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
             </div>
         </nav>
 
@@ -90,7 +89,9 @@
             <div class="overview-boxes">
                 <div class="box">
                     <div class="right-side">
-                        <iframe style="width: 100%;" src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3513.3961161111474!2d77.74234523433992!3d8.724396312577277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sPolice%20Stations%20Near%20Me!5e0!3m2!1sen!2sin!4v1638633555231!5m2!1sen!2sin" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe style="width: 100%;"
+                            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3513.3961161111474!2d77.74234523433992!3d8.724396312577277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sPolice%20Stations%20Near%20Me!5e0!3m2!1sen!2sin!4v1638633555231!5m2!1sen!2sin"
+                            width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -102,7 +103,7 @@
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
-        sidebarBtn.onclick = function() {
+        sidebarBtn.onclick = function () {
             sidebar.classList.toggle("active");
             if (sidebar.classList.contains("active")) {
                 sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");

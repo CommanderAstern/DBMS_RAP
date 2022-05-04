@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -8,14 +7,14 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../static/dashboard/file-fir.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>     
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript">
         function preventBack() {
             window.history.forward();
         }
         setTimeout("preventBack()", 0);
-        window.onunload = function() {
+        window.onunload = function () {
             null
         };
     </script>
@@ -39,7 +38,7 @@
             <li>
                 <a href="/user/profile" class="active">
                     <i class='bx bx-list-ul'></i>
-                    <span class="links_name">Profile</span> 
+                    <span class="links_name">Profile</span>
                 </a>
             </li>
             <li>
@@ -74,13 +73,13 @@
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="dashboard">Police Details (Update)</span>
             </div>
-                <!-- <div class="alert" style="background-color: #009578; border-radius: 5px">
+            <!-- <div class="alert" style="background-color: #009578; border-radius: 5px">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                     <strong>Success!</strong> The entered details have been updated.
                 </div> -->
-            <div class="profile-details">
-                <img src="images\profile.png" alt="user_image">
-                <span class="admin_name">Admin</span>
+            <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
+                <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
+            </div>
             </div>
         </nav>
 
@@ -96,27 +95,37 @@
                                     <div class="user-details">
                                         <div class="input-box">
                                             <span class="details"><label for="Name">First Name:</label></span>
-                                            <input type="text" placeholder="Enter the first name" name="fname" id="fname" value="{{officer.user.first_name}}" required>
+                                            <input type="text" placeholder="Enter the first name" name="fname"
+                                                id="fname" value="{{officer.user.first_name}}" required>
                                         </div>
-                                        <div class="input-box"> 
+                                        <div class="input-box">
                                             <span class="details"><label for="Name">Last Name:</label></span>
-                                            <input type="text" placeholder="Enter the last name" name="lname" id="lname" value="{{officer.user.last_name}}" required>
+                                            <input type="text" placeholder="Enter the last name" name="lname" id="lname"
+                                                value="{{officer.user.last_name}}" required>
                                         </div>
-                                        <div class="input-box"> 
+                                        <div class="input-box">
                                             <span class="details"><label for="Name">Designation:</label></span>
-                                            <input type="text" placeholder="Enter Designation" name="designation" id="designation" value="{{officer.designation}}" required>
+                                            <input type="text" placeholder="Enter Designation" name="designation"
+                                                id="designation" value="{{officer.designation}}" required>
                                         </div>
                                         <div class="input-box">
                                             <span class="details"><label for="Contact">Contact Number:</label></span>
-                                            <input type="number" placeholder="Enter the Contact Number of the Police Officer" name="phone" id="phone" pattern="[0-9]{10}" value="{{officer.phone}}" required>
+                                            <input type="number"
+                                                placeholder="Enter the Contact Number of the Police Officer"
+                                                name="phone" id="phone" pattern="[0-9]{10}" value="{{officer.phone}}"
+                                                required>
                                         </div>
                                         <div class="input-box">
                                             <span class="details"><label for="Adress">Address:</label></span>
-                                            <input type="text" placeholder="Enter the Address of the Police Officer" name="address" id="address" value="{{officer.address}}" required>
+                                            <input type="text" placeholder="Enter the Address of the Police Officer"
+                                                name="address" id="address" value="{{officer.address}}" required>
                                         </div>
                                         <div class="input-box">
                                             <span class="details"><label for="Pstation">Police Station:</label></span>
-                                            <input type="text" placeholder="Enter the name of the Police Station where the Police Officer is Working" name="stationname" id="stationname" value="{{officer.station.name}}" required>
+                                            <input type="text"
+                                                placeholder="Enter the name of the Police Station where the Police Officer is Working"
+                                                name="stationname" id="stationname" value="{{officer.station.name}}"
+                                                required>
                                         </div>
                                     </div>
 
@@ -138,7 +147,7 @@
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
-        sidebarBtn.onclick = function() {
+        sidebarBtn.onclick = function () {
             sidebar.classList.toggle("active");
             if (sidebar.classList.contains("active")) {
                 sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");

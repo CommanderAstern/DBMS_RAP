@@ -76,16 +76,16 @@
             <div class="search-box">
                 <form method="POST" action="{% url 'users:logs' fir_id=fir_id %}">
                     {% csrf_token %}
-                    <input style="height: 50px;" type="text" name="action" id="action" value="" placeholder="Update Logs.." />
+                    <input style="height: 50px;" type="text" name="action" id="action" value=""
+                        placeholder="Update Logs.." />
                     <button type="submit"><i class='bx bx-search'></i></button>
                 </form>
             </div>
             <div>
             </div>
 
-            <div class="profile-details">
-                <img src="images\profile.png" alt="user_image">
-                <span class="admin_name">Police</span>
+            <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
+                <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
             </div>
         </nav>
         <div class="home-content">

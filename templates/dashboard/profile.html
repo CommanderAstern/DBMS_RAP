@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -16,7 +15,7 @@
             window.history.forward();
         }
         setTimeout("preventBack()", 0);
-        window.onunload = function() {
+        window.onunload = function () {
             null
         };
     </script>
@@ -46,7 +45,7 @@
             <li>
                 <a href="/user/file-fir">
                     <i class='bx bx-book-add'></i>
-                    <span class="links_name" >File a FIR</span>
+                    <span class="links_name">File a FIR</span>
                 </a>
             </li>
             <li>
@@ -81,32 +80,31 @@
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="dashboard">Profile</span>
             </div>
-            <div class="profile-details">
-                <img src="images\profile.png" alt="user_image">
-                <span class="admin_name"></span>
+            <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
+                <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
             </div>
         </nav>
         <div class="home-content">
             <div class="overview-boxes">
-                    <div class="box">
-                        <div class="right-side">
-                            <div class="text">
-                                <p><b>Name: {{victim.user.first_name}} {{victim.user.last_name}}</b></p>
-                                <p><b>Aadhar Number: {{victim.aadhar}}</b></p>
-                                <p><b>Contact Number: {{victim.phone}}</b></p>
-                                <p><b>Email: {{victim.user.email}}</b></p>
-                                <p><b>Age(as of January 2022): {{victim.age}}</b></p>
-                                <p><b> Home Address: {{victim.address}}</b></p>
-                            </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="text">
+                            <p><b>Name: {{victim.user.first_name}} {{victim.user.last_name}}</b></p>
+                            <p><b>Aadhar Number: {{victim.aadhar}}</b></p>
+                            <p><b>Contact Number: {{victim.phone}}</b></p>
+                            <p><b>Email: {{victim.user.email}}</b></p>
+                            <p><b>Age(as of January 2022): {{victim.age}}</b></p>
+                            <p><b> Home Address: {{victim.address}}</b></p>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </section>
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
-        sidebarBtn.onclick = function() {
+        sidebarBtn.onclick = function () {
             sidebar.classList.toggle("active");
             if (sidebar.classList.contains("active")) {
                 sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
