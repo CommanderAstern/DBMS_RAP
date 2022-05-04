@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
@@ -152,7 +153,15 @@ def registered_firs(request):
 def logs(request, fir_id):
     logs = Log.objects.filter(fir__pk=fir_id).all().order_by('-datetime')
     if request.method == 'GET':
-        return render(request, '../templates/dashboard_police/logs.html', {'logs': logs})
+        return render(request, '../templates/dashboard_police/logs.html', {'logs': logs, 'fir_id': fir_id})
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+
+        log = Log.objects.create(
+            fir=FIR.objects.filter(pk=fir_id).first(), action=action, datetime=datetime.now())
+
+        return redirect('users:logs', fir_id=fir_id)
 
 
 def sign_in(request):
