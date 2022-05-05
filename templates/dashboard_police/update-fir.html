@@ -4,16 +4,17 @@
 <head>
     <title>CRMS</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../static/dashboard/file-fir.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript">
         function preventBack() {
             window.history.forward();
         }
         setTimeout("preventBack()", 0);
-        window.onunload = function() {
+        window.onunload = function () {
             null
         };
     </script>
@@ -35,7 +36,7 @@
                 <span class="pl-6 text-yellow-200">Official</span>
             </li>
             <li>
-                <a href="/user/profile" class="active">
+                <a href="/user/profile" class="">
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Police Details</span>
                 </a>
@@ -47,7 +48,7 @@
                 </a>
             </li>
             <li>
-                <a href="/user/update-police-id" class="">
+                <a href="/user/update-police-id">
                     <i class='bx bx-rotate-right'></i>
                     <span class="links_name">Update Police</span>
                 </a>
@@ -59,7 +60,7 @@
                 </a>
             </li>
             <li>
-                <a href="firupdate.html" class="active">
+                <a href="/user/update-fir-id" class="active">
                     <i class='bx bx-book-alt'></i>
                     <span class="links_name">FIR Update</span>
                 </a>
@@ -82,103 +83,62 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">First Information Report (Update)</span>
+                <span class="dashboard">Police Details (Update)</span>
             </div>
-                <div class="alert" style="background-color: #009578; border-radius: 5px">
+            <!-- <div class="alert" style="background-color: #009578; border-radius: 5px">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                     <strong>Success!</strong> The entered details have been updated.
-                </div>
-            <div class="profile-details">
-                <img src="images\profile.png" alt="user_image">
-                <span class="admin_name">Admin</span>
+                </div> -->
+            <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
+                <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
+            </div>
             </div>
         </nav>
 
         <div class="home-content">
             <div class="overview-boxes">
-                <div class="firid">
-                    <div class="right-side">
-                        <div class="number"><h3>Enter the FIR ID to update the FIR</h3></div>
-                        <div class="container">
-                            <div class="content">
-                                <form method="POST">
-                                    <div class="user-details">
-                                        <div class="input-box">
-                                            <span class="details"><label>FIR ID:</label></span>
-                                            <input type="text" name="name" value="" placeholder="Enter valid FIR ID">
-                                        </div>
-                                    </div>
-
-                                    <div class="add">
-                                        <button name="update" style="display: flex; align-items: centre; justify-content: centre;" onclick="showDiv()">Search</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="home-content">
-            <div class="overview-boxes">
                 <div class="box">
                     <div class="right-side">
-                        <div class="number">Please Change The Required Details To Update The FIR</div>
+                        <div class="number">Please Change The Required Details To Update The Police</div>
                         <div class="container">
                             <div class="content">
-                                <form method="POST">
+                                <form method="POST" action="{% url 'users:updatepolice' police_id=officer.pk %}">
+                                    {% csrf_token %}
                                     <div class="user-details">
                                         <div class="input-box">
-                                            <span class="details"><label>Complainant's Name:</label></span>
-                                            <input type="text" name="name" value="">
+                                            <span class="details"><label for="fname">First Name:</label></span>
+                                            <input type="text" placeholder="Enter the first name" name="fname"
+                                                id="fname" value="{{fir.victim.user.first_name}}" required>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details"><label>Complainant's Father Name:</label></span>
-                                            <input type="text" name="fname" value="">
+                                            <span class="details"><label for="lname">Last Name:</label></span>
+                                            <input type="text" placeholder="Enter the last name" name="lname" id="lname"
+                                                value="{{fir.victim.user.last_name}}" required>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details"><label>Complainant's Mother Name:</label></span>
-                                            <input type="text" name="mname" value="">
+                                            <span class="details"><label for="category">Category:</label></span>
+                                            <input type="text" placeholder="Enter category" name="category"
+                                                id="category" value="{{fir.category}}" required>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details"><label>Complainant's Aadhar Number:</label></span>
-                                            <input type="number" name="aadhar" value="">
+                                            <span class="details"><label for="suspects">Suspects:</label></span>
+                                            <input type="text"
+                                                placeholder="Enter the Suspects"
+                                                name="suspect" id="suspect" value="{{fir.suspect}}"
+                                                required>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details"><label>Complainant's Contact Number:</label></span>
-                                            <input type="number" name="phno" value="">
+                                            <span class="details"><label for="status">Status:</label></span>
+                                            <input type="text"
+                                                placeholder="Enter the Suspects"
+                                                name="suspect" id="suspect" value="{{fir.suspect}}"
+                                                required>
                                         </div>
-                                        <div class="input-box">
-                                            <span class="details"><label>Complainant's Email ID:</label></span>
-                                            <input type="text" name="mail" value="">
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details"><label>Date and Time of the Occurence of the Crime: </label></span>
-                                            <input type="datetime" name="dt" value="">
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details"><label>Place of Occurence of the Crime:</label></span>
-                                            <input type="text" name="place" value="">
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details"><label>Complainant's Home Address: </label></span>
-                                            <input type="text" name="address" value="">
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details"><label>Crime Description:</label></span>
-                                            <input type="text" name="desc" value="">
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details"><label>Case Status (Pending/On Action/Closed):</label></span>
-                                            <input type="text" name="status" value="">
-                                        </div>
-
                                     </div>
 
                                     <div class="add">
-                                        <button name="update">Update FIR</button>
+                                        <button name="update">Update Record</button>
+
                                     </div>
                                 </form>
                             </div>
@@ -194,16 +154,12 @@
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
-        sidebarBtn.onclick = function() {
+        sidebarBtn.onclick = function () {
             sidebar.classList.toggle("active");
             if (sidebar.classList.contains("active")) {
                 sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
             } else
                 sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-        }
-
-        function showDiv(){
-            document.getElementById('box').style.display="block";
         }
     </script>
 </body>

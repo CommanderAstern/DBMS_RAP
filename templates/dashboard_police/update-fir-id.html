@@ -4,9 +4,8 @@
 <head>
     <title>CRMS</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../static/dashboard_police/content.css">
+    <link rel="stylesheet" href="../../static/dashboard/file-fir.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -37,7 +36,7 @@
                 <span class="pl-6 text-yellow-200">Official</span>
             </li>
             <li>
-                <a href="/user/profile" class="active">
+                <a href="/user/profile" class="">
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Police Details</span>
                 </a>
@@ -49,7 +48,7 @@
                 </a>
             </li>
             <li>
-                <a href="/user/update-police-id" class="">
+                <a href="/user/update-police-id">
                     <i class='bx bx-rotate-right'></i>
                     <span class="links_name">Update Police</span>
                 </a>
@@ -61,7 +60,7 @@
                 </a>
             </li>
             <li>
-                <a href="/user/update-fir-id">
+                <a href="/user/update-fir-id" class="active">
                     <i class='bx bx-book-alt'></i>
                     <span class="links_name">FIR Update</span>
                 </a>
@@ -84,37 +83,51 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Police Details</span>
+                <span class="dashboard">FIR Details (Update)</span>
             </div>
-            <div class="search-box">
-            </div>
-
             <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
                 <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
             </div>
         </nav>
+
         <div class="home-content">
             <div class="overview-boxes">
                 <div class="box">
-                    <div class="right-side">
-                        <div class="text">
-                            <div>
-                                <!--  -->
+                    <div class="w-full">
+                        <div class="number">Please Change The Required Details To Update The FIR</div>
+                        <div class="container">
+                            <div class="content w-full">
+                                <form method="POST" name="getid" id="getid" action="/user/update-police-id/">
+                                    {% csrf_token %}
+                                    <div class="user-details">
+                                        <div class="w-full">
+                                            <span class="details"><label for="uuid">FIRs: </label></span>
+                                            <select class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-4 pr-10 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm z-[100]" name="type" style="padding-left: 0.3rem;">
+                                                {% for fir in firs %}
+                                                    {% if forloop.counter == 1 %}
+                                                        <option selected value="{{fir.pk}}">ID: {{ fir.pk }}, Victim: {{fir.victim.user.first_name}} {{fir.victim.user.last_name}}, Details: {{fir.details}}</option>
+                                                    {% else %}
+                                                        <option value="{{fir.pk}}">ID: {{ fir.pk }}, Victim: {{fir.victim.user.first_name}} {{fir.victim.user.last_name}}, Details: {{fir.details}}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="">
+                                        <button name="update" class="text-white border border-gray-300 hover:bg-red-500 font-medium rounded-lg text-lg px-5 py-2.5 mr-2 mb-2 w-full" style="background-color: #db5540;">Update</button>
+                                    </div>
+                                </form>
                             </div>
-                            <p><b>Unique ID: {{officer.user.pk}}</b></p>
-                            <p><b>Name: {{officer.user.first_name}} {{officer.user.last_name}}</b></p>
-                            <p><b>Rank: {{officer.designation}}</b></p>
-                            <p><b>Gender: {{officer.user.gender}}</b></p>
-                            <p><b>Police Station: {{officer.station.name}}</p>
-                            <p><b>Contact: {{officer.phone}}</b></p>
-                            <p><b>Email: {{officer.user.email}}</b></p>
-                            <p><b>Address: {{officer.address}}</b></p>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+        </div>
     </section>
+
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
@@ -126,5 +139,6 @@
                 sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
         }
     </script>
+</body>
 
 </html>

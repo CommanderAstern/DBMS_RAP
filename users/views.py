@@ -128,10 +128,11 @@ def update_police(request, police_id):
 
         return redirect('users:updatepoliceid')
 
+
 @login_required(login_url='/user/sign-in')
 def update_police_id(request):
     if request.method == 'GET':
-        return render(request, '../templates/dashboard_police/update-police-id.html',{'officers':Officer.objects.all()})
+        return render(request, '../templates/dashboard_police/update-police-id.html', {'officers': Officer.objects.all()})
 
     if request.method == 'POST':
         id = request.POST.get('type')
@@ -160,6 +161,45 @@ def logs(request, fir_id):
             fir=FIR.objects.filter(pk=fir_id).first(), action=action, datetime=datetime.now())
 
         return redirect('users:logs', fir_id=fir_id)
+
+
+@login_required(login_url='/user/sign-in')
+def update_fir(request, fir_id):
+    fir = FIR.objects.filter(pk=fir_id).first()
+    if request.method == 'GET':
+        return render(request, '../templates/dashboard_police/update-fir.html', {'fir': fir})
+
+    if request.method == 'POST':
+        first_name = request.POST.get('fname')
+        last_name = request.POST.get('lname')
+        designation = request.POST.get('designation')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        station_name = request.POST.get('stationname')
+
+        officer.user.first_name = first_name
+        officer.user.last_name = last_name
+        officer.user.save()
+        officer.designation = designation
+        officer.phone = phone
+        officer.address = address
+        officer.station = Station.objects.filter(name=station_name).first()
+        officer.save()
+
+        return redirect('users:updatepoliceid')
+
+
+@login_required(login_url='/user/sign-in')
+def update_fir_id(request):
+    user = request.user
+    officer = Officer.objects.filter(user=user).first()
+    firs = FIR.objects.filter(officer=officer).all().order_by('-datetime')
+    if request.method == 'GET':
+        return render(request, '../templates/dashboard_police/update-fir-id.html', {'firs': firs})
+
+    if request.method == 'POST':
+        id = request.POST.get('type')
+        return redirect('users:updatepolice', fir_id = id)
 
 
 @login_required(login_url='/user/sign-in')
