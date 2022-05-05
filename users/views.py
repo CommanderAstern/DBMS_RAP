@@ -1,4 +1,5 @@
 from datetime import datetime
+from unicodedata import category
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
@@ -172,21 +173,23 @@ def update_fir(request, fir_id):
     if request.method == 'POST':
         first_name = request.POST.get('fname')
         last_name = request.POST.get('lname')
-        designation = request.POST.get('designation')
-        phone = request.POST.get('phone')
-        address = request.POST.get('address')
-        station_name = request.POST.get('stationname')
+        category = request.POST.get('category')
+        suspect = request.POST.get('suspect')
+        status = request.POST.get('status')
+        priority = request.POST.get('priority')
+        bureau_notes = request.POST.get('bureau_notes')
 
-        officer.user.first_name = first_name
-        officer.user.last_name = last_name
-        officer.user.save()
-        officer.designation = designation
-        officer.phone = phone
-        officer.address = address
-        officer.station = Station.objects.filter(name=station_name).first()
-        officer.save()
+        fir.victim.user.first_name = first_name
+        fir.victim.user.last_name = last_name
+        fir.victim.user.save()
+        fir.category = category
+        fir.suspect = suspect
+        fir.status = status
+        fir.priority = priority
+        fir.bureau_notes = bureau_notes
+        fir.save()
 
-        return redirect('users:updatepoliceid')
+        return redirect('users:updatefirid')
 
 
 @login_required(login_url='/user/sign-in')
@@ -199,7 +202,7 @@ def update_fir_id(request):
 
     if request.method == 'POST':
         id = request.POST.get('type')
-        return redirect('users:updatepolice', fir_id = id)
+        return redirect('users:updatefir', fir_id = id)
 
 
 @login_required(login_url='/user/sign-in')

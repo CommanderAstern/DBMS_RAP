@@ -83,7 +83,7 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Police Details (Update)</span>
+                <span class="dashboard">FIR Details (Update)</span>
             </div>
             <!-- <div class="alert" style="background-color: #009578; border-radius: 5px">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -102,7 +102,7 @@
                         <div class="number">Please Change The Required Details To Update The Police</div>
                         <div class="container">
                             <div class="content">
-                                <form method="POST" action="{% url 'users:updatepolice' police_id=officer.pk %}">
+                                <form method="POST" action="{% url 'users:updatefir' fir_id=fir.pk %}">
                                     {% csrf_token %}
                                     <div class="user-details">
                                         <div class="input-box">
@@ -122,17 +122,23 @@
                                         </div>
                                         <div class="input-box">
                                             <span class="details"><label for="suspects">Suspects:</label></span>
-                                            <input type="text"
-                                                placeholder="Enter the Suspects"
-                                                name="suspect" id="suspect" value="{{fir.suspect}}"
-                                                required>
+                                            <input type="text" placeholder="Enter the Suspects" name="suspect"
+                                                id="suspect" value="{{fir.suspect}}" required>
                                         </div>
                                         <div class="input-box">
                                             <span class="details"><label for="status">Status:</label></span>
-                                            <input type="text"
-                                                placeholder="Enter the Suspects"
-                                                name="suspect" id="suspect" value="{{fir.suspect}}"
-                                                required>
+                                            <input type="text" placeholder="Enter the Status" name="status" id="status"
+                                                value="{{fir.status}}" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details"><label for="priority">Priority:</label></span>
+                                            <input type="text" placeholder="Enter the Priority" name="priority"
+                                                id="priority" value="{{fir.priority}}" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details"><label for="bureau_notes">Notes:</label></span>
+                                            <input type="text" placeholder="Enter the Bureau Notes" name="bureau_notes"
+                                                id="bureau_notes" value="{{fir.bureau_notes}}" required>
                                         </div>
                                     </div>
 
