@@ -93,10 +93,10 @@
         <div class="home-content">
             <div class="overview-boxes">
                 <div class="box">
-                    <div class="right-side">
+                    <div class="w-full">
                         <div class="number">Please Change The Required Details To Update The Police</div>
                         <div class="container">
-                            <div class="content">
+                            <div class="content w-full">
                                 <form method="POST" name="getid" id="getid" action="/user/update-police-id/">
                                     {% csrf_token %}
                                     <div class="user-details">
@@ -114,8 +114,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="add">
-                                        <button name="update">Search</button>
+                                    <div class="">
+                                        <button name="update" class="text-white border border-gray-300 hover:bg-red-500 font-medium rounded-lg text-lg px-5 py-2.5 mr-2 mb-2 w-full" style="background-color: #db5540;">Update</button>
                                     </div>
                                 </form>
                             </div>

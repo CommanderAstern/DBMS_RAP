@@ -153,7 +153,7 @@ def registered_firs(request):
 def logs(request, fir_id):
     logs = Log.objects.filter(fir__pk=fir_id).all().order_by('-datetime')
     if request.method == 'GET':
-        return render(request, '../templates/dashboard_police/logs.html', {'logs': logs, 'fir_id': fir_id})
+        return render(request, '../templates/dashboard_police/logs.html', {'logs': logs.reverse(), 'fir_id': fir_id})
 
     if request.method == 'POST':
         action = request.POST.get('action')

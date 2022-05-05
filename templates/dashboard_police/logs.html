@@ -18,6 +18,10 @@
             null
         };
     </script>
+    <style>
+
+    </style>
+
 </head>
 
 <body>
@@ -90,7 +94,7 @@
                     {% csrf_token %}
                     <input style="height: 50px;" type="text" name="action" id="action" value=""
                         placeholder="Update Logs.." />
-                    <button type="submit"><i class='bx bx-search'></i></button>
+                    <button type="submit"><i class='bx bx-plus' style="background-color: #db5540; position: absolute;"></i></button>
                 </form>
             </div>
             <div>
@@ -100,22 +104,45 @@
                 <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
             </div>
         </nav>
-        <div class="home-content">
+        <!-- <div class="home-content">
             <div class="overview-boxes">
                 {% for log in logs %}
                 <div class="box" style="margin-left: 1.5%; display: block;">
                     <div class="right-side">
                         <div class="text">
                             <div>
-                                <!--  -->
                             </div>
-                            <p><b>Log {{log.pk}}: {{log.action}}</b></p>
+                            <p><b>Log {{forloop.counter}}: {{log.action}}</b></p>
                             <p><b>{{log.datetime}}</b></p>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
+        </div> -->
+        <div class="home-content">
+            {% for log in logs %}
+            <div class="p-4 px-10 py-4 justify-center">
+                <div class=" rounded overflow-hidden shadow-lg bg-white">
+                <div class="px-6 py-4">
+                    <div class="flex items-center">
+                    <div class="flex-1 text-grey-darker">
+                        <div class="flex items-center">
+                        <span class="font-semibold text-2xl text-grey-darker">Log Entry: {{forloop.counter}}</span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="px-4 py-4 bg-grey-lighter flex items-center">
+                    <span class="inline-block rounded-full text-xl text-grey ml-3">{{log.action}}</span>
+                </div>
+                <div class="px-4 py-4 bg-grey-lighter flex items-center">
+                    <div class="inline-block border-green border-2 rounded px-2 py-1 text-green text-sm;"><i class='bx bx-time-five'></i></div>
+                    <span class="inline-block rounded-full text-sm text-grey ml-3">{{log.datetime}}</span>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </section>
     <script>
