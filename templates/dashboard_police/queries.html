@@ -2,10 +2,9 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <title>CRMS</title>
     <meta charset="UTF-8">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../static/dashboard_police/content.css">
+    <link rel="stylesheet" href="../../static/dashboard/file-fir.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -18,11 +17,35 @@
             null
         };
     </script>
-    <style>
-
-    </style>
-
 </head>
+<style>
+    form .add {
+        height: 45px;
+        margin: 35px 0
+    }
+
+    form .add button {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s linear;
+        background: linear-gradient(135deg, #008168, #009578);
+    }
+
+    form .add button:hover {
+        /* transform: scale(0.99); */
+        transition-delay: 2s;
+        background: linear-gradient(-135deg, #008168, #009578);
+    }
+</style>
 
 <body>
     <div class="sidebar">
@@ -58,7 +81,7 @@
                 </a>
             </li>
             <li>
-                <a href="/user/registered-firs" class="active">
+                <a href="/user/registered-firs" class="">
                     <i class='bx bx-pie-chart-alt-2'></i>
                     <span class="links_name">FIRs</span>
                 </a>
@@ -70,7 +93,7 @@
                 </a>
             </li>
             <li>
-                <a href="/user/queries-police">
+                <a href="/user/queries-police" class="active">
                     <i class='bx bx-message'></i>
                     <span class="links_name">Queries</span>
                 </a>
@@ -87,64 +110,66 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Log details</span>
+                <span class="dashboard">Ask Your Queries</span>
             </div>
-            <div class="search-box">
-                <form method="POST" action="{% url 'users:logs' fir_id=fir_id %}">
-                    {% csrf_token %}
-                    <input style="height: 50px;" type="text" name="action" id="action" value=""
-                        placeholder="Update Logs.." />
-                    <button type="submit"><i class='bx bx-plus' style="background-color: #db5540; position: absolute;"></i></button>
-                </form>
-            </div>
-            <div>
-            </div>
+
 
             <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
                 <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
             </div>
         </nav>
-        <!-- <div class="home-content">
-            <div class="overview-boxes">
-                {% for log in logs %}
-                <div class="box" style="margin-left: 1.5%; display: block;">
-                    <div class="right-side">
-                        <div class="text">
-                            <div>
-                            </div>
-                            <p><b>Log {{forloop.counter}}: {{log.action}}</b></p>
-                            <p><b>{{log.datetime}}</b></p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div> -->
+
         <div class="home-content">
-            {% for log in logs %}
-            <div class="p-4 px-10 py-4 justify-center">
-                <div class=" rounded overflow-hidden shadow-lg bg-white">
-                <div class="px-6 py-4">
-                    <div class="flex items-center">
-                    <div class="flex-1 text-grey-darker">
-                        <div class="flex items-center">
-                        <span class="font-semibold text-2xl text-grey-darker">Log Entry: {{forloop.counter}}</span>
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <div class="number">Please Fill The Required Details To Ask Your Query</div>
+                        <div class="container">
+                            <div class="content">
+                                <form action="queries.html" method="POST">
+                                    <div class="user-details">
+                                        <div class="input-box">
+                                            <span class="details"><label for="name">Name:</label></span>
+                                            <input type="text" name="name" placeholder="Enter Your Name" id="name"
+                                                required>
+                                        </div>
+                                        <br>
+                                        <div class="input-box">
+                                            <span class="details"><label for="aadhar">Aadhar Number:</label></span>
+                                            <input type="number" id="aadhar" pattern="[0-9]{12}"
+                                                placeholder="Enter Your Aadhar Number" name="aadhar" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details"><label for="num">Contact Number:</label></span>
+                                            <input type="number" id="num" pattern="[0-9]{10}"
+                                                placeholder="Enter Your Contact Number" name="number" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details"><label for="mail">Email ID:</label></span>
+                                            <input type="email" id="mail" placeholder="Enter Your Email ID"
+                                                name="mailid" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details-1"><label for="qry">Query:</label></span>
+                                            <textarea id="qry" placeholder="   Ask Your Query Here" name="queries"
+                                                style="height:200px"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="add">
+                                        <button name="askquery">Submit the Query</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
+
                     </div>
-                    </div>
-                </div>
-                <div class="px-4 py-4 bg-grey-lighter flex items-center">
-                    <span class="inline-block rounded-full text-xl text-grey ml-3">{{log.action}}</span>
-                </div>
-                <div class="px-4 py-4 bg-grey-lighter flex items-center">
-                    <div class="inline-block border-green border-2 rounded px-2 py-1 text-green text-sm;"><i class='bx bx-time-five'></i></div>
-                    <span class="inline-block rounded-full text-sm text-grey ml-3">{{log.datetime}}</span>
-                </div>
                 </div>
             </div>
-            {% endfor %}
+        </div>
         </div>
     </section>
+
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
@@ -156,5 +181,6 @@
                 sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
         }
     </script>
+</body>
 
 </html>

@@ -65,8 +65,6 @@ def queries(request):
     if request.method == 'GET':
         return render(request, '../templates/dashboard/queries.html')
 
-    # if request.method == 'POST':
-
 
 @login_required(login_url='/uesr/sign-in')
 def add_police(request):
@@ -162,6 +160,12 @@ def logs(request, fir_id):
             fir=FIR.objects.filter(pk=fir_id).first(), action=action, datetime=datetime.now())
 
         return redirect('users:logs', fir_id=fir_id)
+
+
+@login_required(login_url='/user/sign-in')
+def queries_police(request):
+    if request.method == 'GET':
+        return render(request, '../templates/dashboard_police/queries.html')
 
 
 def sign_in(request):
