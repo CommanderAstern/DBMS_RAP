@@ -133,10 +133,10 @@ def update_police(request, police_id):
 @login_required(login_url='/user/sign-in')
 def update_police_id(request):
     if request.method == 'GET':
-        return render(request, '../templates/dashboard_police/update-police-id.html')
+        return render(request, '../templates/dashboard_police/update-police-id.html',{'officers':Officer.objects.all()})
 
     if request.method == 'POST':
-        id = request.POST.get('uuid')
+        id = request.POST.get('type')
         return redirect('users:updatepolice', police_id = id)
 
 
