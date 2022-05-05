@@ -85,20 +85,26 @@
             </div>
         </nav>
         <div class="home-content">
-            <div class="overview-boxes">
-                <div class="box">
-                    <div class="right-side">
-                        <div class="text">
-                            <p><b>Name: {{victim.user.first_name}} {{victim.user.last_name}}</b></p>
-                            <p><b>Aadhar Number: {{victim.aadhar}}</b></p>
-                            <p><b>Contact Number: {{victim.phone}}</b></p>
-                            <p><b>Email: {{victim.user.email}}</b></p>
-                            <p><b>Age(as of January 2022): {{victim.age}}</b></p>
-                            <p><b> Home Address: {{victim.address}}</b></p>
-                        </div>
+            <div class="w-full">
+                <div class="max-w-screen-md px-10 py-6 mx-4 mt-20 bg-white rounded-lg shadow md:mx-auto border-1">
+                  <div class="flex flex-col items-start w-full m-auto sm:flex-row">
+                    <div class="flex flex-col pt-4 mx-auto my-auto sm:pt-0 sm:mx-0">
+                      <div class="flex flex-col mx-auto sm:flex-row sm:mx-0 ">
+                        <h2 class="flex pr-4 text-xl font-light text-gray-900 sm:text-3xl"> {{victim.user.first_name}} {{victim.user.last_name}}</h2>
+                      </div>
+                      <div class="items-center justify-between mt-3 ">
+                        <div class="flex"><span class="mr-1 font-semibold">Aadhar Number </span> {{victim.aadhar}}</div>
+                        <div class="flex"><span class="mr-1 font-semibold">Contact Number </span> {{victim.phone}}</div>
+                      </div>
                     </div>
+                  </div>
+                  <div class="w-full pt-5">
+                    <h1 class="text-lg font-semibold text-gray-800 sm:text-xl">{{victim.user.email}}</h1>
+                    <p class="text-sm text-gray-500 md:text-base">{{victim.age}}</p>
+                    <p class="text-sm text-gray-800 md:text-base">{{victim.address}}</p>
+                  </div>
                 </div>
-            </div>
+              </div>
         </div>
     </section>
     <script>
