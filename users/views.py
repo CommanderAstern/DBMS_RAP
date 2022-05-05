@@ -1,4 +1,5 @@
 from datetime import datetime
+from unicodedata import category
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
@@ -128,10 +129,11 @@ def update_police(request, police_id):
 
         return redirect('users:updatepoliceid')
 
+
 @login_required(login_url='/user/sign-in')
 def update_police_id(request):
     if request.method == 'GET':
-        return render(request, '../templates/dashboard_police/update-police-id.html',{'officers':Officer.objects.all()})
+        return render(request, '../templates/dashboard_police/update-police-id.html', {'officers': Officer.objects.all()})
 
     if request.method == 'POST':
         id = request.POST.get('type')
@@ -160,6 +162,47 @@ def logs(request, fir_id):
             fir=FIR.objects.filter(pk=fir_id).first(), action=action, datetime=datetime.now())
 
         return redirect('users:logs', fir_id=fir_id)
+
+
+@login_required(login_url='/user/sign-in')
+def update_fir(request, fir_id):
+    fir = FIR.objects.filter(pk=fir_id).first()
+    if request.method == 'GET':
+        return render(request, '../templates/dashboard_police/update-fir.html', {'fir': fir})
+
+    if request.method == 'POST':
+        first_name = request.POST.get('fname')
+        last_name = request.POST.get('lname')
+        category = request.POST.get('category')
+        suspect = request.POST.get('suspect')
+        status = request.POST.get('status')
+        priority = request.POST.get('priority')
+        bureau_notes = request.POST.get('bureau_notes')
+
+        fir.victim.user.first_name = first_name
+        fir.victim.user.last_name = last_name
+        fir.victim.user.save()
+        fir.category = category
+        fir.suspect = suspect
+        fir.status = status
+        fir.priority = priority
+        fir.bureau_notes = bureau_notes
+        fir.save()
+
+        return redirect('users:updatefirid')
+
+
+@login_required(login_url='/user/sign-in')
+def update_fir_id(request):
+    user = request.user
+    officer = Officer.objects.filter(user=user).first()
+    firs = FIR.objects.filter(officer=officer).all().order_by('-datetime')
+    if request.method == 'GET':
+        return render(request, '../templates/dashboard_police/update-fir-id.html', {'firs': firs})
+
+    if request.method == 'POST':
+        id = request.POST.get('type')
+        return redirect('users:updatefir', fir_id = id)
 
 
 @login_required(login_url='/user/sign-in')
