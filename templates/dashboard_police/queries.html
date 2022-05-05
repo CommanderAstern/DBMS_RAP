@@ -2,9 +2,7 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <title>CRMS</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../static/dashboard/file-fir.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +18,34 @@
         };
     </script>
 </head>
+<style>
+    form .add {
+        height: 45px;
+        margin: 35px 0
+    }
+
+    form .add button {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s linear;
+        background: linear-gradient(135deg, #008168, #009578);
+    }
+
+    form .add button:hover {
+        /* transform: scale(0.99); */
+        transition-delay: 2s;
+        background: linear-gradient(-135deg, #008168, #009578);
+    }
+</style>
 
 <body>
     <div class="sidebar">
@@ -43,7 +69,7 @@
                 </a>
             </li>
             <li>
-                <a href="/user/add-police" class="active">
+                <a href="/user/add-police" class="">
                     <i class='bx bx-plus'></i>
                     <span class="links_name">Add Police</span>
                 </a>
@@ -55,7 +81,7 @@
                 </a>
             </li>
             <li>
-                <a href="/user/registered-firs">
+                <a href="/user/registered-firs" class="">
                     <i class='bx bx-pie-chart-alt-2'></i>
                     <span class="links_name">FIRs</span>
                 </a>
@@ -67,7 +93,7 @@
                 </a>
             </li>
             <li>
-                <a href="/user/queries-police">
+                <a href="/user/queries-police" class="active">
                     <i class='bx bx-message'></i>
                     <span class="links_name">Queries</span>
                 </a>
@@ -84,8 +110,10 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Police Details (Add)</span>
+                <span class="dashboard">Ask Your Queries</span>
             </div>
+
+
             <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
                 <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
             </div>
@@ -95,76 +123,42 @@
             <div class="overview-boxes">
                 <div class="box">
                     <div class="right-side">
-                        <div class="number">Please Fill The Required Details To Add The Police</div>
+                        <div class="number">Please Fill The Required Details To Ask Your Query</div>
                         <div class="container">
                             <div class="content">
-                                <form method="POST" action="/user/add-police/" enctype="multipart/form-data">
-                                    {% csrf_token %}
+                                <form action="queries.html" method="POST">
                                     <div class="user-details">
                                         <div class="input-box">
-                                            <span class="details"><label for="poid">First name:</label></span>
-                                            <input type="text" placeholder="Enter First name" name="fname" id="fname"
+                                            <span class="details"><label for="name">Name:</label></span>
+                                            <input type="text" name="name" placeholder="Enter Your Name" id="name"
                                                 required>
                                         </div>
+                                        <br>
                                         <div class="input-box">
-                                            <span class="details"><label for="Name"> Last name:</label></span>
-                                            <input type="text" placeholder="Enter Last name" name="lname" id="lname"
-                                                required>
+                                            <span class="details"><label for="aadhar">Aadhar Number:</label></span>
+                                            <input type="number" id="aadhar" pattern="[0-9]{12}"
+                                                placeholder="Enter Your Aadhar Number" name="aadhar" required>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details"><label for="Name"> Email:</label></span>
-                                            <input type="text" placeholder="Enter Email" name="email" id="email"
-                                                required>
+                                            <span class="details"><label for="num">Contact Number:</label></span>
+                                            <input type="number" id="num" pattern="[0-9]{10}"
+                                                placeholder="Enter Your Contact Number" name="number" required>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details"><label for="Name"> Designation:</label></span>
-                                            <input type="text" placeholder="Enter Designation" name="designation"
-                                                id="designation" required>
+                                            <span class="details"><label for="mail">Email ID:</label></span>
+                                            <input type="email" id="mail" placeholder="Enter Your Email ID"
+                                                name="mailid" required>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details"><label for="stationname"> Station name:</label></span>
-                                            <input type="text" placeholder="Enter Station to be Posted"
-                                                name="stationname" id="stationname" required>
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details"><label for="Name"> Age:</label></span>
-                                            <input type="text" placeholder="Enter Age" name="age" id="age" required>
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details"><label for="Name"> Phone:</label></span>
-                                            <input type="text" placeholder="Enter Phone Number" name="phone" id="phone"
-                                                required>
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details"><label for="Name"> Aadhar:</label></span>
-                                            <input type="text" placeholder="Ensure the Aadhar number is correct"
-                                                name="aadhar" id="aadhar" required>
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details"><label for="Rank">Address:</label></span>
-                                            <input type="text" placeholder="Enter the current Address" name="address"
-                                                id="address" required>
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details"><label for="Pstation">Pasword:</label></span>
-                                            <input type="password" placeholder="Enter the password" name="password"
-                                                id="password" required>
-                                        </div>
-                                        <div class="input-box">
-                                            <span class="details"><label for="Contact">Confirm Passsword:</label></span>
-                                            <input type="Password" placeholder="Re-enter the password"
-                                                name="cnfpassword" id="cnfpassword" required>
+                                            <span class="details-1"><label for="qry">Query:</label></span>
+                                            <textarea id="qry" placeholder="   Ask Your Query Here" name="queries"
+                                                style="height:200px"></textarea>
                                         </div>
 
                                     </div>
-
                                     <div class="add">
-                                        <button name="policebclk">Add Police</button>
-
+                                        <button name="askquery">Submit the Query</button>
                                     </div>
-                                    <!-- <div class="goback">
-                                        <a href="police_police.html"><input type="button" onclick="" value="Go Back"></a>
-                                    </div> -->
                                 </form>
                             </div>
                         </div>
@@ -175,6 +169,7 @@
         </div>
         </div>
     </section>
+
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");

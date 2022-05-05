@@ -18,4 +18,5 @@ urlpatterns = [
     path('update-police-id/<police_id>', views.update_police, name='updatepolice'),
     path('registered-firs/', views.registered_firs, name='registeredfirs'),
     path('registered-firs/<fir_id>', views.logs, name='logs'),
+    path('queries-police/', views.queries_police, name='queries-police'),
 ]
