@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../../static/dashboard/file-fir.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () {
+            null
+        };
+    </script>
+</head>
+<style>
+    form .add {
+        height: 45px;
+        margin: 35px 0
+    }
+
+    form .add button {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s linear;
+        background: linear-gradient(135deg, #008168, #009578);
+    }
+
+    form .add button:hover {
+        /* transform: scale(0.99); */
+        transition-delay: 2s;
+        background: linear-gradient(-135deg, #008168, #009578);
+    }
+</style>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class='bx bx-book-reader'></i>
+            <span class="logo_name">FIR Management</span>
+        </div>
+        <ul class="nav-links">
+            <li class="pb-16">
+                {% with user.first_name|add:" "|add:user.last_name as FullNameTemp %}
+                <span class="pl-6 text-white text-2xl">{{ FullNameTemp|truncatechars_html:14 }}</span>
+                {% endwith %}
+                <br>
+                <!-- Not Sure what to do here -->
+                <span class="pl-6 text-yellow-200">Official</span>
+            </li>
+            <li>
+                <a href="/user/profile" class="">
+                    <i class='bx bx-list-ul'></i>
+                    <span class="links_name">Police Details</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/add-police" class="">
+                    <i class='bx bx-plus'></i>
+                    <span class="links_name">Add Police</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/update-police-id" class="">
+                    <i class='bx bx-rotate-right'></i>
+                    <span class="links_name">Update Police</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/registered-firs" class="">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">FIRs</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/update-fir-id">
+                    <i class='bx bx-book-alt'></i>
+                    <span class="links_name">FIR Update</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/queries-police" class="active">
+                    <i class='bx bx-message'></i>
+                    <span class="links_name">Queries</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a href="/user/log-out">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Ask Your Queries</span>
+            </div>
+
+
+            <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
+                <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
+            </div>
+        </nav>
+
+        <div class="home-content">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <div class="number">Please Fill The Required Details To Ask Your Query</div>
+                        <div class="container">
+                            <div class="content">
+                                <form action="queries.html" method="POST">
+                                    <div class="user-details">
+                                        <div class="input-box">
+                                            <span class="details"><label for="name">Name:</label></span>
+                                            <input type="text" name="name" placeholder="Enter Your Name" id="name"
+                                                required>
+                                        </div>
+                                        <br>
+                                        <div class="input-box">
+                                            <span class="details"><label for="aadhar">Aadhar Number:</label></span>
+                                            <input type="number" id="aadhar" pattern="[0-9]{12}"
+                                                placeholder="Enter Your Aadhar Number" name="aadhar" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details"><label for="num">Contact Number:</label></span>
+                                            <input type="number" id="num" pattern="[0-9]{10}"
+                                                placeholder="Enter Your Contact Number" name="number" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details"><label for="mail">Email ID:</label></span>
+                                            <input type="email" id="mail" placeholder="Enter Your Email ID"
+                                                name="mailid" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details-1"><label for="qry">Query:</label></span>
+                                            <textarea id="qry" placeholder="   Ask Your Query Here" name="queries"
+                                                style="height:200px"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="add">
+                                        <button name="askquery">Submit the Query</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+</body>
+
+</html>
