@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from datetime import datetime
 from unicodedata import category
 from django.shortcuts import render, redirect
@@ -270,3 +271,8 @@ def sign_up(request):
 def sign_out(request):
     logout(request)
     return redirect('/user/sign-in')
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> main
