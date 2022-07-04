@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <title>CRMS</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../../static/dashboard_police/content.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () {
+            null
+        };
+    </script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class='bx bx-book-reader'></i>
+            <span class="logo_name">FIR Management</span>
+        </div>
+        <ul class="nav-links">
+            <li class="pb-16">
+                {% with user.first_name|add:" "|add:user.last_name as FullNameTemp %}
+                <span class="pl-6 text-white text-2xl">{{ FullNameTemp|truncatechars_html:14 }}</span>
+                {% endwith %}
+                <br>
+                <!-- Not Sure what to do here -->
+                <span class="pl-6 text-yellow-200">Official</span>
+            </li>
+            <li>
+                <a href="/user/profile" class="active">
+                    <i class='bx bx-list-ul'></i>
+                    <span class="links_name">Police Details</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/add-police" class="">
+                    <i class='bx bx-plus'></i>
+                    <span class="links_name">Add Police</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/update-police-id" class="">
+                    <i class='bx bx-rotate-right'></i>
+                    <span class="links_name">Update Police</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/registered-firs">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">FIRs</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/update-fir-id">
+                    <i class='bx bx-book-alt'></i>
+                    <span class="links_name">FIR Update</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/queries-police">
+                    <i class='bx bx-message'></i>
+                    <span class="links_name">Queries</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a href="/user/log-out">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Police Details</span>
+            </div>
+            <div class="search-box">
+            </div>
+
+            <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
+                <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
+            </div>
+        </nav>
+        <div class="home-content">
+        <div class="w-full min-h-screen">
+            <div class="max-w-screen-md px-10 py-6 mx-4 mt-20 bg-white rounded-lg shadow md:mx-auto border-1">
+              <div class="flex flex-col items-start w-full m-auto sm:flex-row">
+                <div class="flex flex-col pt-4 mx-auto my-auto sm:pt-0 sm:mx-0">
+                  <div class="mx-auto sm:flex-row sm:mx-0 ">
+                    <h2 class="flex pr-4 text-xl font-light text-gray-900 sm:text-3xl"> {{officer.user.first_name}} {{officer.user.last_name}}</h2>
+                    <p class="text-sm text-gray-500 md:text-base">{{officer.designation}}</p>
+                  </div>
+                  <div class="items-center justify-between mt-3 ">
+                    <div class="flex"><span class="mr-1 font-semibold">Police Station </span> {{officer.station.name}}</div>
+                    <div class="flex"><span class="mr-1 font-semibold">Contact Number </span>{{officer.phone}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="w-full pt-5">
+                <h1 class="text-lg font-semibold text-gray-800 sm:text-xl">{{officer.user.email}}</h1>
+                <p class="text-sm text-gray-800 md:text-base">{{officer.address}}</p>
+              </div>
+            </div>
+          </div>
+    </section>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+
+</html>

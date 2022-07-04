@@ -1,47 +1,49 @@
 from django.shortcuts import render
+from django.contrib.auth import authenticate, login
 from users import models as user_models
-from dummy import models as dummy_models
 from django.http import HttpResponse
+import numpy as np
+import random as rand
+from station.models import *
+from users.models import *
+from station.models import Station
+from fir.models import *
 
 def homepage(request):
-    return render(request, 'dashboard/dashboard.html')
+    return render(request, 'homepage/homepage.html')
 
-def file_an_fir(request):
+def faqs(request):
+    return render(request, 'faqs/faqs.html')
+
+def about(request):
+    return render(request, 'about/about.html')
+
+def search(request):
+    if request.method == 'POST':
+        search  = request.POST.get('search')
+        type  = request.POST.get('type')
+        stations = Station.objects.filter(name__icontains=search)
+        firs = FIR.objects.filter(victim__user__first_name__icontains=search)
+        officers = Officer.objects.filter(user__first_name__icontains=search)
+        return render(request, 'search/search.html',{'search':search, 'stations':stations, 'type':type, 'firs':firs, 'officers':officers})
+    else:
+        return render(request, 'search/search.html',{})    
+
+def search_results(request):
+    if request.method == 'POST':
+        search  = request.POST.get('search')
+        return render(request, 'search/search-results.html',{'search':search})
+    else:
+        return render(request, 'search/search-results.html',{})    
+
+def stationjoin(request):
     if request.method == 'GET':
-        return render(request, 'form/form.html')
+        return render(request, 'search/stationjoin.html')
 
     if request.method == 'POST':
-        print(request.POST)
-        f = dummy_models.form()
-        f.first_name = request.POST['first_name']
-        f.last_name = request.POST['last_name']
-        f.email = request.POST['email']
-        f.phone = request.POST['phone']
-        f.birth_date = request.POST['birthdate']
-        f.details = request.POST['details']
-        f.suspects = request.POST['suspect']
-        f.save()
+       stationname = request.POST['stationname']
 
-        print(f)
-
-        return HttpResponse('Form submitted successfully')
-
-def login(request):
-    if request.method == 'GET':
-        return render(request, 'authentication/login.html')
-
-    if request.method == 'POST':
-        print(request.POST)
-        id = request.POST['officerid']
-        password = request.POST['your_pass']
-
-        officers = user_models.Officer.objects.all()
-        print(id, password)
-        print(officers)
-
-        for officer in officers:
-            if officer.officer_id == id and officer.officer_password == password:
-                return HttpResponse('Login successful')
-
-        else:
-            return HttpResponse('Login failed')
+       station = Station.objects.filter(name=stationname).first()
+       officers = Officer.objects.select_related('station').filter(station=station)
+       return render(request, 'search/displayjoin.html', {'officers': officers})
+    

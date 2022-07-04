@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Basic HTML/Tailwind starter</title>
+  <meta name="description" content="Basic HTML/Tailwind starter" />
+  <meta name="author" content="Daily Dev Tips" />
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+
+<body class="">
+  <!-- backround image -->
+  <section class="big-size">
+    <nav class="flex justify-between p-6 px-4">
+      <div class="flex justify-between items-center w-full">
+        <div class="xl:w-1/3 z-50">
+          <a class="block max-w-max" href="/">
+            <h3 class="text-2xl font-semibold text-center logoMain">FIR REPORT</h3>
+          </a>
+        </div>
+        <div class="hidden xl:block xl:w-1/3 z-40">
+          <ul class="flex justify-center">
+            <li class="mr-12"><a class="text-coolGray-500 hover:text-coolGray-900 font-medium" href="/search">Search</a>
+            </li>
+            <li class="mr-12"><a class="text-coolGray-500 hover:text-coolGray-900 font-medium" href="/faqs">FAQs</a>
+            </li>
+            <li class="mr-12"><a class="text-coolGray-500 hover:text-coolGray-900 font-medium" href="/about">About</a>
+            </li>
+          </ul>
+        </div>
+        <div class="hidden xl:block xl:w-1/3">
+          <div class="flex items-center justify-end">
+            <!-- hover:bg-green-600 -->
+            <a class="inline-block py-3 px-8 text-sm leading-5 text-green-50 brownIthink  font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md z-50"
+              href="/user/sign-in">Sign In</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </section>
+  <!-- Tailwind 2 is already loaded, just paste the code here -->
+  <div class="inline-flex flex-col space-y-2 items-start justify-end z-50 faq">
+    <p class="text-4xl font-bold leading-10 text-gray-700">Frequently Asked Questions (FAQs)</p>
+    <br />
+    <p class="text-3xl font-medium leading-9 text-gray-700">What is an F.I.R?
+      <br />
+    </p>
+    <p class="text-base leading-normal text-gray-700">F.I.R. means First Information Report, made to police, about
+      commission of a cognizable offence, In effect, it amounts to putting law in to motion by giving information
+      relating to the commission of a cognizable offence to an officer in charge of a police station, and shall be
+      signed by the person giving such information.</p>
+    <p class="text-3xl font-medium leading-9 text-gray-700">How do I lodge F.I.R.?
+      <br />
+    </p>
+    <p class="text-base leading-normal text-gray-700">The informant/ complainant should go to the police station having
+      jurisdiction over the area (where the offence is committed) and report to officer in-charge/ station house officer
+      about commission of a cognizable offence.
+    </p>
+    <p class="text-3xl font-medium leading-9 text-gray-700">What is a cognizable case or offence?
+      <br />
+    </p>
+    <p class="text-base leading-normal text-gray-700">A cognizable case means a case in which a police officer may, in
+      accordance with the First Schedule of Cr.P.C.(1973), or under any other law for the time being in force, arrest
+      without warrant.</p>
+    <p class="text-3xl font-medium leading-9 text-gray-700">What is the process that follows after a police report has
+      been filed?
+      <br />
+    </p>
+    <p class="text-base leading-normal text-gray-700">The police department will then take steps to investigate the
+      complaint. <br />The investigative process may include interviewing complainants, witnesses, and potential
+      suspects, as well as compiling other evidence. </p>
+  </div>
+
+  <div class="coolText"></div>
+
+</body>
+
+</html>

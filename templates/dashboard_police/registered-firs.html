@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <title>CRMS</title>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../../static/dashboard_police/content.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () {
+            null
+        };
+    </script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class='bx bx-book-reader'></i>
+            <span class="logo_name">FIR Management</span>
+        </div>
+        <ul class="nav-links">
+            <li class="pb-16">
+                {% with user.first_name|add:" "|add:user.last_name as FullNameTemp %}
+                <span class="pl-6 text-white text-2xl">{{ FullNameTemp|truncatechars_html:14 }}</span>
+                {% endwith %}
+                <br>
+                <!-- Not Sure what to do here -->
+                <span class="pl-6 text-yellow-200">Official</span>
+            </li>
+            <li>
+                <a href="/user/profile" class="">
+                    <i class='bx bx-list-ul'></i>
+                    <span class="links_name">Police Details</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/add-police" class="">
+                    <i class='bx bx-plus'></i>
+                    <span class="links_name">Add Police</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/update-police-id" class="">
+                    <i class='bx bx-rotate-right'></i>
+                    <span class="links_name">Update Police</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/registered-firs" class="active">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">FIRs</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/update-fir-id">
+                    <i class='bx bx-book-alt'></i>
+                    <span class="links_name">FIR Update</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user/queries-police">
+                    <i class='bx bx-message'></i>
+                    <span class="links_name">Queries</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a href="/user/log-out">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Logs</span>
+            </div>
+            <div>
+            </div>
+
+            <div class="profile-details" style="min-width: 0px; padding-right: 2px;">
+                <img src="../../static/profile.png" alt="user_image" style="padding-left: 5px;">
+            </div>
+        </nav>
+        <div class="container mx-auto px-4 sm:px-8">
+            <div class="py-8">
+                <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                    <div class="mt-16 inline-block min-w-full shadow rounded-lg overflow-hidden">
+                        <table class="min-w-full leading-normal pt-10">
+                            <thead>
+                                <tr>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        name
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Aadhar No
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Created at
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Crime Description
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Status
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for fir in firs %}
+
+                                <tr onclick="window.location='{% url 'users:logs' fir_id=fir.pk %}';"
+                                    class="bg-white hover:bg-gray-200">
+                                    <td class="px-5 py-5 border-b border-gray-200  text-sm">
+                                        <div class="flex items-center">
+                                            <div class="ml-3">
+                                                <p class="text-gray-900 whitespace-no-wrap">
+                                                    {{fir.victim.user.first_name}} {{fir.victim.user.last_name}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <p class="text-gray-900 whitespace-no-wrap">{{fir.victim.aadhar}}</p>
+                                    </td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                            {{fir.datetime}}
+                                        </p>
+                                    </td>
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                            {{fir.details}}
+                                        </p>
+                                    </td>
+
+                                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                        <span
+                                            class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                            <span aria-hidden
+                                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                            <span class="relative">{{fir.status}}</span>
+                                        </span>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+
+</html>
